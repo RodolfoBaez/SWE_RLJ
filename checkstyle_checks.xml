@@ -193,5 +193,11 @@
       <!-- The check is suppressed in the next line of code after the comment -->
       <property name="influenceFormat" value="1"/>
     </module>
+     <!-- we are adding TypeName, enforces naming convention -->
+    <module name="TypeName">
+      <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF"/>
+      <message key="name.invalidPattern" value="Type name ''{0}'' must match pattern ''{1}''."/>
+    </module>
+
   </module>
 </module>

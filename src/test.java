@@ -6,7 +6,7 @@ public class test{
       gcdMachine(m,n);
   } 
   // checkstyle error typeName error G should be lowercase
-  public static void GcdMachine(int m, int n){
+  public static void gcdMachine(int m, int n){
         int r = 0;
         int timeComplex = 0;
         

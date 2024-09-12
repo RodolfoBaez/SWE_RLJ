@@ -1,4 +1,4 @@
-package processAPI;
+package ProcessAPI;
 
 public enum DSCode {
 	SUCCESS(1, true),

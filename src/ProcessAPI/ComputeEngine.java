@@ -1,4 +1,4 @@
-package processAPI;
+package ProcessAPI;
 
 public interface ComputeEngine {
 	InputSource getInputSrc();

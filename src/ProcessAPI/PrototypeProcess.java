@@ -1,4 +1,4 @@
-package processAPI;
+package ProcessAPI;
 
 public class PrototypeProcess {
 	public void prototype(ComputeEngine CE, DataStorage DS)

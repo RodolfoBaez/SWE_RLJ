@@ -1,4 +1,4 @@
-package ProcessAPI;
+package ProcessApi;
 
 public interface DataStorage {
 	public DSCode writeToOutput();

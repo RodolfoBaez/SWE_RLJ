@@ -1,4 +1,4 @@
-Public Class test{
+Public class test{
   public static void main(String args[]){
       int m = 60;
       int n = 24;

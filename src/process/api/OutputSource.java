@@ -1,4 +1,4 @@
-package ProcessApi;
+package process.api;
 
 public interface OutputSource {
 

@@ -1,4 +1,4 @@
-package ProcessApi;
+package process.api;
 
 public enum DSCode {
 	SUCCESS(1, true),
@@ -7,8 +7,7 @@ public enum DSCode {
 	private final int id;
 	private final boolean success;
 	
-	private DSCode(int id, boolean success)
-	{
+	private DSCode(int id, boolean success){
 		this.id = id;
 		this.success = success;
 	}

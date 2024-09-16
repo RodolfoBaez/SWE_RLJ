@@ -33,7 +33,7 @@ The first row of the CSV file contains integers for which the program will compu
 | 7                |
 | 10               |
 
-[Example CSV File For Input](https://docs.google.com/spreadsheets/d/1rDqXKVRXAhz5F5OCtLXWUbLdiGTCDBQ5Cz1LHpbdwRQ/edit?usp=sharing)
+[Example CSV File For Input](https://docs.google.com/spreadsheets/d/1y0zyf3XYWDzkmndVelLVxirV273C3wbvwS_CSmKGVgU/edit?usp=sharing)
 
 ---
 
@@ -47,7 +47,7 @@ The program generates an output CSV file in which each column corresponds to the
 | 7                | 5040               |
 | 10               | 3628800            |
 
-[Example CSV File of Output](https://docs.google.com/spreadsheets/d/1FCXybJVHUn5OvEs4fKmvVpMGPA5vC50okEQDZ5FtUwo/edit?usp=sharing)
+[Example CSV File of Output](https://docs.google.com/spreadsheets/d/1LsOKnRCu7wJibaXTxzEOEVTNuq983HeZ3mPUbjJKsPE/edit?usp=sharing)
 
 ---
 

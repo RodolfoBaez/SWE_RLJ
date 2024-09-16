@@ -1,9 +1,14 @@
 package conceptual.api;
 
-public interface ComputeEngine {
-	//from user via network api
-    InputSource getInputSrc(ComputeEngine ce);   
+public class ComputeEngine implements ComputeEngineInterface {
+    @Override
+    public InputSource getInputSource(String jobId) {
+        // TODO: Implement logic to retrieve InputSource based on jobId
+        return new InputSource();
+    }
 
-    //send output source to dataStorage to be formatted
-    OutputSource sendOutputSrc(ComputeEngine ce); 
+    @Override
+    public void writeOutput(String jobId, OutputSource outputSource) {
+        // TODO: Implement logic to format and write the output from OutputSource
+    }
 }

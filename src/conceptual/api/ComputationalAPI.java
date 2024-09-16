@@ -1,29 +1,33 @@
 package conceptual.api;
 
-
 public class ComputationalAPI implements ComputationalAPIInterface {
     private ComputeEngine computeEngine;
+    private ComputeEngineTwo computeEngineTwo;
 
-    public ComputationalAPIImpl(ComputeEngine computeEngine) {
+    public ComputationalAPI(ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
         this.computeEngine = computeEngine;
+        this.computeEngineTwo = computeEngineTwo;
     }
 
     @Override
-    public ComputationalResponse processJob(ComputationalRequest request) {
-        // Retrieve input from computeEngine
-        InputSource inputSource = computeEngine.getInputSource(request.getJobId());
+    public void sendInputToComputeEngineTwo(InputSource inputSource) {
+        // Get data from input source provided by computeEngine
         Object inputData = inputSource.getData();
 
-        // Perform computation (handled by computeEngineTwo)
-        ComputeEngineTwo computeEngineTwo = new ComputeEngineTwoImpl();
-        Object result = computeEngineTwo.performComputation(inputData);
+        // Send data to computeEngineTwo for computation
+        Object computedResult = computeEngineTwo.performComputation(inputData);
 
-        // Provide result back to computeEngine for formatting
+        // Create an OutputSource object to store the result
         OutputSource outputSource = new OutputSource();
-        outputSource.setData(result);
-        computeEngine.writeOutput(request.getJobId(), outputSource);
+        outputSource.setData(computedResult);
 
-        // Return response (e.g., status, output location)
-        return new ComputationalResponse();
+        // Send computed result back to computeEngine
+        sendOutputToComputeEngine(outputSource);
+    }
+
+    @Override
+    public void sendOutputToComputeEngine(OutputSource outputSource) {
+        // Use the computeEngine to format and write the output
+        computeEngine.writeOutput("job#", outputSource);
     }
 }

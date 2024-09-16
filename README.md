@@ -52,4 +52,4 @@ The program generates an output CSV file in which each column corresponds to the
 ---
 
 ## System Diagram
-in progress 
+<img width="703" alt="Screen Shot 2024-09-16 at 8 16 49 AM" src="https://github.com/user-attachments/assets/3b2d03ca-37d5-4c76-9c30-163c99db0fb1"> 

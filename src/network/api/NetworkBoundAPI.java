@@ -1,16 +1,16 @@
 package network.api;
 
 public class NetworkBoundAPI {
-	public void prototype (UserInput uI, ComputeE cE) {
+	public void prototype(UserInput userInput, ComputeE computeEngine) {
 		
 		
 		//reads input from user 
-		UserInput input = uI.getInput();
-		char delimiter = uI.getdelimiter();
+		UserInput input = userInput.getInput();
+		char delimiter = userInput.getdelimiter();
 		
 		
 		//reads out put from compute engine 
-		ComputeE output = cE.getOutput(input,delimiter);
+		ComputeE output = computeEngine.getOutput(input,delimiter);
 		
 		
 	}

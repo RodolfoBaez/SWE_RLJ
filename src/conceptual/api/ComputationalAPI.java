@@ -1,4 +1,3 @@
-
 package conceptual.api;
 
 public class ComputationalAPI implements ComputationalAPIInterface {
@@ -38,4 +37,3 @@ public class ComputationalAPI implements ComputationalAPIInterface {
 
      computeEngine.writeOutput("job#", outputSource);  
  }
-}

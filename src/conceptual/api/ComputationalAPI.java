@@ -1,33 +1,41 @@
+
 package conceptual.api;
 
 public class ComputationalAPI implements ComputationalAPIInterface {
-    private ComputeEngine computeEngine;
-    private ComputeEngineTwo computeEngineTwo;
 
-    public ComputationalAPI(ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
-        this.computeEngine = computeEngine;
-        this.computeEngineTwo = computeEngineTwo;
-    }
+ private ComputeEngine computeEngine;        
+ private ComputeEngineTwo computeEngineTwo;  
 
-    @Override
-    public void sendInputToComputeEngineTwo(InputSource inputSource) {
-        // Get data from input source provided by computeEngine
-        Object inputData = inputSource.getData();
+ // Constructor for initializing the API with the compute engines
+ public ComputationalAPI(ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
+     this.computeEngine = computeEngine;
+     this.computeEngineTwo = computeEngineTwo;
+ }
 
-        // Send data to computeEngineTwo for computation
-        Object computedResult = computeEngineTwo.performComputation(inputData);
+ //implementation of sending input to ComputeEngineTwo
+ public void sendInputToComputeEngineTwo(InputSource inputSource) {
+     System.out.println("Sending input to ComputeEngineTwo (stub).");
 
-        // Create an OutputSource object to store the result
-        OutputSource outputSource = new OutputSource();
-        outputSource.setData(computedResult);
+     Object inputData = inputSource.getData();
+     if (inputData == null) {
+         System.out.println("Input data is empty (stub).");
+     }
+     //storing Result into object
+     Object computedResult = computeEngineTwo.performComputation(inputData);  
+  
+     //sending result to OutputSource object
+     OutputSource outputSource = new OutputSource();
+     outputSource.setData(computedResult);
 
-        // Send computed result back to computeEngine
-        sendOutputToComputeEngine(outputSource);
-    }
+     // Send the output to ComputeEngine 
+     sendOutputToComputeEngine(outputSource);
+ }
 
-    @Override
-    public void sendOutputToComputeEngine(OutputSource outputSource) {
-        // Use the computeEngine to format and write the output
-        computeEngine.writeOutput("job#", outputSource);
-    }
+ // implementation for sending output to ComputeEngine
+ public void sendOutputToComputeEngine(OutputSource outputSource) {
+     //Actual implementation will handle the output
+     System.out.println("Sending output to ComputeEngine");
+
+     computeEngine.writeOutput("job#", outputSource);  
+ }
 }

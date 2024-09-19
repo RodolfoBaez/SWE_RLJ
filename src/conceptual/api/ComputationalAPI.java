@@ -1,33 +1,40 @@
 package conceptual.api;
 
 public class ComputationalAPI implements ComputationalAPIInterface {
-    private ComputeEngine computeEngine;
-    private ComputeEngineTwo computeEngineTwo;
 
+    private ComputeEngine computeEngine;        
+    private ComputeEngineTwo computeEngineTwo;  
+
+    // Constructor for initializing the API with the compute engines
     public ComputationalAPI(ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
         this.computeEngine = computeEngine;
         this.computeEngineTwo = computeEngineTwo;
     }
 
-    @Override
+    // Implementation of sending input to ComputeEngineTwo
     public void sendInputToComputeEngineTwo(InputSource inputSource) {
-        // Get data from input source provided by computeEngine
+        System.out.println("Sending input to ComputeEngineTwo (stub).");
+
         Object inputData = inputSource.getData();
+        if (inputData == null) {
+            System.out.println("Input data is empty (stub).");
+        }
+        // Storing Result into object
+        Object computedResult = computeEngineTwo.performComputation(inputData);  
 
-        // Send data to computeEngineTwo for computation
-        Object computedResult = computeEngineTwo.performComputation(inputData);
-
-        // Create an OutputSource object to store the result
+        // Sending result to OutputSource object
         OutputSource outputSource = new OutputSource();
         outputSource.setData(computedResult);
 
-        // Send computed result back to computeEngine
+        // Send the output to ComputeEngine 
         sendOutputToComputeEngine(outputSource);
     }
 
-    @Override
+    // Implementation for sending output to ComputeEngine
     public void sendOutputToComputeEngine(OutputSource outputSource) {
-        // Use the computeEngine to format and write the output
-        computeEngine.writeOutput("job#", outputSource);
+        // Actual implementation will handle the output
+        System.out.println("Sending output to ComputeEngine");
+
+        computeEngine.writeOutput("job#", outputSource);  
     }
-}
+ }

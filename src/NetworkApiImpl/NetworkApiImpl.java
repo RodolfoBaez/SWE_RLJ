@@ -1,4 +1,4 @@
-package NetworkApiImpl;
+package networkApiImpl;
 import network.api.NetworkBoundAPI;
 
 public class NetworkApiImpl {
@@ -10,7 +10,7 @@ public class NetworkApiImpl {
 		this.networkBoundAPI = networkBoundAPI; 
 	}
 	
-	// these should be integers??
+
 	
 	public String getUserInput (String getInput) {
 		return "";

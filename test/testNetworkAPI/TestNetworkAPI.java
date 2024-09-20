@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
-import NetworkApiImpl.NetworkApiImpl;
+import networkApiImpl.NetworkApiImpl;
 import network.api.NetworkBoundAPI;
 
 
@@ -15,7 +15,7 @@ public class TestNetworkAPI {
 
 	
 	private NetworkBoundAPI mockApi;
-	private NetworkApiImpl networkApi = new NetworkApiImpl(mockApi); 
+	private networkApiImpl networkApi = new networkApiImpl(mockApi); 
 
 	
 	

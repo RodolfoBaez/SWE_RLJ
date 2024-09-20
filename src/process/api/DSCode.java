@@ -1,14 +1,13 @@
 package process.api;
 
-public enum DSCode {
-	SUCCESS(1, true),
-	FALIURE(0, false);
+public interface DSCode {
+	static DSCode SUCCESS = () -> DSCodeStatus.SUCESSS;
+	static DSCode FAILURE = () -> DSCodeStatus.FAILURE;
 	
-	private final int id;
-	private final boolean success;
+	DSCodeStatus getStatus();
 	
-	private DSCode(int id, boolean success){
-		this.id = id;
-		this.success = success;
+	public static enum DSCodeStatus{
+		SUCESSS,
+		FAILURE;
 	}
 }

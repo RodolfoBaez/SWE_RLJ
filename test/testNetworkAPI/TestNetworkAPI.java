@@ -7,15 +7,14 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
 import networkApiImpl.NetworkApiImpl;
+
 import network.api.NetworkBoundAPI;
 
 
 
 public class TestNetworkAPI {
 
-	
-	private NetworkBoundAPI mockApi;
-	private networkApiImpl networkApi = new networkApiImpl(mockApi); 
+	private NetworkApiImpl networkApi = new NetworkApiImpl((Mockito.mock(NetworkBoundAPI.class))); 
 
 	
 	

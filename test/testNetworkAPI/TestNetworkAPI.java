@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
-import networkApiImpl.NetworkApiImpl;
+import network.impl.NetworkApiImpl;
 
 import network.api.NetworkBoundAPI;
 

@@ -11,11 +11,11 @@ public class NetworkApiImpl {
 
 	// these should be integers??
 
-	public String getUserInput (String getInput) {
+	public String getUserInput(String getInput) {
 		return "";
 	}
 
-	public String getCeOutput (String getOutput) {
+	public String getCeOutput(String getOutput) {
 		return "";
 	}
 

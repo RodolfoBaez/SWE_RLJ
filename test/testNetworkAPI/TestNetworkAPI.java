@@ -12,7 +12,7 @@ import network.api.NetworkBoundAPI;
 
 
 
-public class TestNetworkAPI {
+public class TestNetworkAPI{
 
 	private NetworkApiImpl networkApi = new NetworkApiImpl((Mockito.mock(NetworkBoundAPI.class))); 
 

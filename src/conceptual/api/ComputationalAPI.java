@@ -30,7 +30,8 @@ public class ComputationalAPI implements ComputationalAPIInterface {
         OutputSource outputSource = new OutputSource();
         outputSource.setData(computedResult);
 
-
+    }
+    
     // Implementation for sending output to ComputeEngine
     public void sendOutputToComputeEngine(OutputSource outputSource) {
         System.out.println("Sending output to ComputeEngine.");

@@ -27,7 +27,7 @@ public class ComputationalAPI implements ComputationalAPIInterface {
         Integer computedResult = computeEngineTwo.performComputation(inputData);
 
         // Sending result to OutputSource object
-        OutputSource outputSource = new OutputSource();
+        OutputSource<Integer> outputSource = new OutputSource<Integer>();
         outputSource.setData(computedResult);
 
     }

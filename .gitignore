@@ -48,3 +48,5 @@ build/classes/java/main/network/api/UserInput.class
 build/classes/java/test/infrastructureTest/InMemoryInputSource.class
 build/classes/java/test/infrastructureTest/InMemoryOutputSource.class
 test/emptyfile
+/.gradle/
+/build/

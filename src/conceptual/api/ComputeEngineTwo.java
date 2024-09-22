@@ -5,5 +5,5 @@ public class ComputeEngineTwo implements ComputeEngineTwoInterface<String, Integ
     public Integer performComputation(String inputData) {
         // Implement the actual computation logic here
         return inputData.length();//returning int 
-    }
+
 }

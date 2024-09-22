@@ -2,8 +2,8 @@ package conceptual.api;
 
 public class ComputationalAPI implements ComputationalAPIInterface {
 
-    private ComputeEngine computeEngine;        
-    private ComputeEngineTwo computeEngineTwo;  
+    private ComputeEngine computeEngine;
+    private ComputeEngineTwo computeEngineTwo;
 
     // Constructor for initializing the API with the compute engines
     public ComputationalAPI(ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
@@ -13,28 +13,30 @@ public class ComputationalAPI implements ComputationalAPIInterface {
 
     // Implementation of sending input to ComputeEngineTwo
     public void sendInputToComputeEngineTwo(InputSource inputSource) {
-        System.out.println("Sending input to ComputeEngineTwo (stub).");
+        System.out.println("Sending input to ComputeEngineTwo.");
 
-        Object inputData = inputSource.getData();
+        // Assuming inputSource provides a String 
+        String inputData = (String) inputSource.getData();  
         if (inputData == null) {
-            System.out.println("Input data is empty (stub).");
+            System.out.println("Input data is empty.");
+            return;
         }
-        // Storing Result into object
-        Object computedResult = computeEngineTwo.performComputation(inputData);  
+
+        // Storing Result into Integer (since ComputeEngineTwo returns Integer)
+        Integer computedResult = computeEngineTwo.performComputation(inputData);
 
         // Sending result to OutputSource object
         OutputSource outputSource = new OutputSource();
         outputSource.setData(computedResult);
 
-        // Send the output to ComputeEngine 
+        // Send the output to ComputeEngine
         sendOutputToComputeEngine(outputSource);
     }
 
     // Implementation for sending output to ComputeEngine
     public void sendOutputToComputeEngine(OutputSource outputSource) {
-        // Actual implementation will handle the output
-        System.out.println("Sending output to ComputeEngine");
+        System.out.println("Sending output to ComputeEngine.");
 
-        computeEngine.writeOutput("job#", outputSource);  
+        computeEngine.writeOutput("job#", outputSource);
     }
- }
+}

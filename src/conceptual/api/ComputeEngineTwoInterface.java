@@ -1,5 +1,6 @@
 package conceptual.api;
 
-public interface ComputeEngineTwoInterface {
-    Object performComputation(Object inputData);
+//generic 
+public interface ComputeEngineTwoInterface<InputType, OutputType> {
+    OutputType performComputation(InputType inputData);
 }

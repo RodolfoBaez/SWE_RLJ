@@ -36,4 +36,13 @@ public class ProcessAPIImpl implements ProcessInterface {
 		// return ds.readFromInput();
 		return null;
 	}
+
+	// Gets here to create sanity test, will fail, DSS and CE don't exist yet
+	public DataStorage getDSS() {
+		return null;
+	}
+
+	public ComputeEngine getCE() {
+		return null;
+	}
 }

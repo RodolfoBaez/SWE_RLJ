@@ -1,17 +1,25 @@
-import process.api.ProcessAPI;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
 
-public class ProcessAPITests {
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import process.api.ComputeEngine;
+import process.api.DataStorage;
+import process.api.ProcessAPI;
+
+public class TestProcessAPI {
 	private ProcessAPI mockProcApi = mock(ProcessAPI.class);
-	private ProcessAPIImpl procApi = new ProcessAPIImpl(mockProcAPI);
-	//I cannot get any mockito or Junit methods to be recognized within this class
-	//ProcessAPI depends on an object of DSS and CE
+	private ProcessAPIImpl procApi = new ProcessAPIImpl(mockProcApi);
+
+	// ProcessAPI depends on an object of DSS and CE
 	@Test
-	public void testDSS()
-	{
-		Assertions.assertEquals();
+	public void testDSS() {
+		Assertions.assertEquals(procApi.getDSS(), DataStorage.class, "Failed to verify existence of DSS");
 	}
+
 	@Test
-	public void testCE()
-	{}
+	public void testCE() {
+		Assertions.assertEquals(procApi.getCE(), ComputeEngine.class, "Failed to verify existence of CE");
+
+	}
 }

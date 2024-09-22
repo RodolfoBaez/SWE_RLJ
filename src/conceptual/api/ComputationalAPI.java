@@ -2,8 +2,9 @@ package conceptual.api;
 
 public class ComputationalAPI implements ComputationalAPIInterface {
 
-    private ComputeEngine computeEngine;
-    private ComputeEngineTwo computeEngineTwo;
+
+    private ComputeEngine computeEngine;        
+    private ComputeEngineTwo computeEngineTwo;  
 
     // Constructor for initializing the API with the compute engines
     public ComputationalAPI(ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
@@ -29,9 +30,6 @@ public class ComputationalAPI implements ComputationalAPIInterface {
         OutputSource outputSource = new OutputSource();
         outputSource.setData(computedResult);
 
-        // Send the output to ComputeEngine
-        sendOutputToComputeEngine(outputSource);
-    }
 
     // Implementation for sending output to ComputeEngine
     public void sendOutputToComputeEngine(OutputSource outputSource) {
@@ -39,4 +37,4 @@ public class ComputationalAPI implements ComputationalAPIInterface {
 
         computeEngine.writeOutput("job#", outputSource);
     }
-}
+ }

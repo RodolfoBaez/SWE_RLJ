@@ -19,6 +19,7 @@ public class TestConceptualAPI {
     private InputSource mockInputSource;
     private OutputSource mockOutputSource;
 
+    @BeforeEach
     public void setUp() {
         // Mock the dependencies
         mockComputeEngine = Mockito.mock(ComputeEngine.class);

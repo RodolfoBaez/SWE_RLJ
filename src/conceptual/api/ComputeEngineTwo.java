@@ -1,10 +1,9 @@
 package conceptual.api;
 
-public class ComputeEngineTwo implements ComputeEngineTwoInterface<String, Integer> {
-    
-    public Integer performComputation(String inputData) {
+public class ComputeEngineTwo implements ComputeEngineTwoInterface {
 
-    	return inputData.length(); // returning integer
-    } 
-
-} 
+	public Object performComputation(Object inputData) {
+            //Implement actual computation logic here
+        return new Object();
+    }
+}

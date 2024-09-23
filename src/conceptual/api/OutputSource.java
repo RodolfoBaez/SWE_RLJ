@@ -1,13 +1,13 @@
 package conceptual.api;
 
-public class OutputSource {
-    private Object data;
+public class OutputSource<T> implements OutputSourceInterface<T> {
+    private T data;
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }

@@ -1,3 +1,5 @@
 
 dont add
 /bin/
+/.gradle/
+/build/

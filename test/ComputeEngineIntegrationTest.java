@@ -12,6 +12,7 @@ public class ComputeEngineIntegrationTest {
 	@org.junit.Test
 	public void validateInputFromCe() {
 		double[] testArr = { 1, 10, 25 };
+		// Should be assertArrayEquals since we want to compare 2 arrays
 		assertEquals(ce.getInputSource("0100100001101001"), testArr, "CE Fail: Input Incorrect");
 	}
 

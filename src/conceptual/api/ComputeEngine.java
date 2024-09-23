@@ -6,8 +6,8 @@ public class ComputeEngine implements ComputeEngineInterface {
         return new InputSource();
     }
 
-    public void writeOutput(String jobId, OutputSource outputSource) {
-        //Implement logic to format and write the output from OutputSource
-    }
+	public void writeOutput(String jobId, OutputSource outputSource) {
+		// Implement logic to format and write the output from OutputSource
+	}
 
 }

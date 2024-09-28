@@ -1,6 +1,6 @@
 package network.api;
 
-public interface ComputeE {
+public interface ComputeResult {
 
 	ComputeResult getOutput(UserInput input, char delimiter);
 	

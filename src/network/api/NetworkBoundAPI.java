@@ -1,7 +1,7 @@
 package network.api;
 
 public class NetworkBoundAPI {
-	public void prototype(UserInput userInput, ComputeE computeEngine) {
+	public void prototype(UserInput userInput, ComputeResult computeEngine) {
 		
 		
 		//reads input from user 

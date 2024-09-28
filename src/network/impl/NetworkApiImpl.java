@@ -18,7 +18,7 @@ public class NetworkApiImpl {
 	}
 
 	public String getCeOutput(String getOutput) {
-		return FactorialCompute() // call Factorial compute ;
+		return ""; // call Factorial compute ;
 	}
 	
 		// connect to data store

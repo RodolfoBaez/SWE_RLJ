@@ -1,4 +1,4 @@
-package network.impl;
+package implementations;
 import network.api.NetworkBoundAPI;
 
 public class NetworkApiImpl {

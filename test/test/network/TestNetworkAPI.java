@@ -1,12 +1,15 @@
 package test.network;
 
 import static org.junit.Assert.fail;
+
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
+
+import implementations.NetworkApiImpl;
+
 import static org.mockito.Mockito.when;
 
-import network.impl.NetworkApiImpl;
 import network.api.NetworkBoundAPI;
 
 

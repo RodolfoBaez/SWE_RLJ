@@ -10,7 +10,7 @@ import conceptual.api.ComputeEngine;
 import process.impl.ProcessAPIImpl;
 
 public class DataStorage implements DataStorageInterface {
-	private ProcessAPIImpl p;
+	private ProcessAPIImpl processAPI;
 	private ComputeEngine ce;
 	private char delimitter;
 	// TODO: I think one static output file would be better and we could append w/
@@ -22,10 +22,10 @@ public class DataStorage implements DataStorageInterface {
 		this(new ProcessAPIImpl(), new ComputeEngine(), ',');
 	}
 
-	public DataStorage(ProcessAPIImpl p, ComputeEngine ce, char defaultDelim) {
-		this.p = p;
+	public DataStorage(ProcessAPIImpl procApi, ComputeEngine ce, char defaultDelim) {
+		processAPI = procApi;
 		this.ce = ce;
-		// TODO: This variable needs to be set whenever a new delim is specified
+		// TODO: This variable needs to be set whenever a new delimiter is specified
 		delimitter = defaultDelim;
 	}
 
@@ -72,8 +72,9 @@ public class DataStorage implements DataStorageInterface {
 				content += (i + delimitter + " ");
 			}
 			return content;
-		} else
+		} else {
 			return "Failure to create content for Output";
+		}
 	}
 
 	@Override

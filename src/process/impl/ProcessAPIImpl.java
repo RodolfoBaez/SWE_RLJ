@@ -60,14 +60,16 @@ public class ProcessAPIImpl implements ProcessInterface {
 			if (f.getPath().equals(filePath + jobNumber)) {
 				outputFile = f;
 				break;
-			} else
+			} else {
 				continue;
+			}
 		}
 
-		if (outputFile.getPath().equals("default"))
+		if (outputFile.getPath().equals("default")) {
 			throw new Exception("Failed to find requested file: filepath " + filePath + " job#: " + jobNumber);
-		else
+		} else {
 			return outputFile;
+		}
 	}
 
 }

@@ -13,16 +13,20 @@ public class DataStorage implements DataStorageInterface {
 	private ProcessAPIImpl p;
 	private ComputeEngine ce;
 	private char delimitter;
+	// TODO: I think one static output file would be better and we could append w/
+	// header for info like run #, timestamp, etc.
 	private static int fileCounter = 0;
 	private static ArrayList<File> outputFiles;
 
 	public DataStorage() {
-		this(new ProcessAPIImpl(), new ComputeEngine());
+		this(new ProcessAPIImpl(), new ComputeEngine(), ',');
 	}
 
-	public DataStorage(ProcessAPIImpl p, ComputeEngine ce) {
+	public DataStorage(ProcessAPIImpl p, ComputeEngine ce, char defaultDelim) {
 		this.p = p;
 		this.ce = ce;
+		// TODO: This variable needs to be set whenever a new delim is specified
+		delimitter = defaultDelim;
 	}
 
 	@SuppressWarnings("unused")
@@ -36,10 +40,9 @@ public class DataStorage implements DataStorageInterface {
 
 	@Override
 	public File writeToOutputFile(String filePath, String content) {
-		try {
-			// TODO: add checks to see if filePath is valid
-			File outputFile = new File(filePath + fileCounter);
-			BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile));
+		File outputFile = new File(filePath + fileCounter);
+
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile))) {
 			outputFiles.add(outputFile);
 			fileCounter += 1;
 
@@ -78,4 +81,7 @@ public class DataStorage implements DataStorageInterface {
 		return outputFiles;
 	}
 
+	public void setDelimitter(char delim) {
+		this.delimitter = delim;
+	}
 }

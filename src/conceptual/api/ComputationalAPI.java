@@ -1,7 +1,5 @@
 package conceptual.api;
 
-import java.nio.file.Path;
-
 public class ComputationalAPI implements ComputationalAPIInterface {
 
     private ComputeEngine computeEngine;
@@ -13,12 +11,11 @@ public class ComputationalAPI implements ComputationalAPIInterface {
         this.computeEngineTwo = computeEngineTwo;
     }
 
-    // Implementation of sending input (Path) to ComputeEngineTwo
+    // Implementation of sending input (integer) to ComputeEngineTwo
     @Override
-    public void sendInputToComputeEngineTwo(Path inputPath) {
-
-        // Perform computation using ComputeEngineTwo with the provided Path
-        int computedResult = computeEngineTwo.performComputation(inputPath);
+    public void sendInputToComputeEngineTwo(int inputData) {
+        // Perform computation using ComputeEngineTwo with the provided integer
+        int computedResult = computeEngineTwo.performComputation(inputData);
 
         // After computation, pass the result (integer) to writeOutput in ComputeEngine
         sendOutputToComputeEngine(computedResult);

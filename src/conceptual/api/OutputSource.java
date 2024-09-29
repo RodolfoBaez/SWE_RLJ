@@ -1,13 +1,15 @@
 package conceptual.api;
 
-public class OutputSource<T> implements OutputSourceInterface<T> {
-    private T data;
+public class OutputSource implements OutputSourceInterface {
+    private int data;
 
-    public T getData() {
+    @Override
+    public int getData() {
         return data;
     }
 
-    public void setData(T data) {
+    @Override
+    public void setData(int data) {
         this.data = data;
     }
 }

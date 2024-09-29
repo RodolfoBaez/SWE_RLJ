@@ -1,40 +1,33 @@
 package conceptual.api;
 
+import java.nio.file.Path;
+
 public class ComputationalAPI implements ComputationalAPIInterface {
 
-	private ComputeEngine computeEngine;
-	private ComputeEngineTwo computeEngineTwo;
+    private ComputeEngine computeEngine;
+    private ComputeEngineTwo computeEngineTwo;
 
-	// Constructor for initializing the API with the compute engines
-	public ComputationalAPI(ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
-		this.computeEngine = computeEngine;
-		this.computeEngineTwo = computeEngineTwo;
-	}
+    // Constructor for initializing the API with the compute engines
+    public ComputationalAPI(ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
+        this.computeEngine = computeEngine;
+        this.computeEngineTwo = computeEngineTwo;
+    }
 
-	// Implementation of sending input to ComputeEngineTwo
-	public void sendInputToComputeEngineTwo(InputSource inputSource) {
-		System.out.println("Sending input to ComputeEngineTwo.");
+    // Implementation of sending input (Path) to ComputeEngineTwo
+    @Override
+    public void sendInputToComputeEngineTwo(Path inputPath) {
 
-		// Assuming inputSource provides a String
-		String inputData = (String) inputSource.getData();
-		if (inputData == null) {
-			System.out.println("Input data is empty.");
-			return;
-		}
+        // Perform computation using ComputeEngineTwo with the provided Path
+        int computedResult = computeEngineTwo.performComputation(inputPath);
 
-		// Storing Result into Integer (since ComputeEngineTwo returns Integer)
-		Integer computedResult = (Integer) computeEngineTwo.performComputation(inputData);
+        // After computation, pass the result (integer) to writeOutput in ComputeEngine
+        sendOutputToComputeEngine(computedResult);
+    }
 
-		// Sending result to OutputSource object
-		OutputSource<Integer> outputSource = new OutputSource<Integer>();
-		outputSource.setData(computedResult);
-
-	}
-
-	// Implementation for sending output to ComputeEngine
-	public void sendOutputToComputeEngine(OutputSource outputSource) {
-		System.out.println("Sending output to ComputeEngine.");
-
-		computeEngine.writeOutput("job#", outputSource);
-	}
+    // Implementation for sending output (integer) to ComputeEngine
+    @Override
+    public void sendOutputToComputeEngine(int outputData) {
+        // Writing the output result to ComputeEngine
+        computeEngine.writeOutput(outputData);
+    }
 }

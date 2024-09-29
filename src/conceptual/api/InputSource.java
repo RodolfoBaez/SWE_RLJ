@@ -1,13 +1,17 @@
 package conceptual.api;
 
-public class InputSource<T> implements InputSourceInterface<T>{
-    private T data;
+import java.nio.file.Path;
 
-    public T getData() {
-        return data;
+public class InputSource implements InputSourceInterface {
+    private Path path;
+
+    @Override
+    public Path getPath() {
+        return path;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    @Override
+    public void setPath(Path path) {
+        this.path = path;
     }
 }

@@ -1,6 +1,10 @@
 package conceptual.api;
 
-public interface InputSourceInterface<T> {
-    T getData();
-    void setData(T data);
+public interface InputSourceInterface {
+   
+    void setData(String data);
+    
+    String getFilePath();
+
+    String getData();
 }

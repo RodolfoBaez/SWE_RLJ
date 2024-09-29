@@ -1,13 +1,17 @@
 package conceptual.api;
 
-public class OutputSource<T> implements OutputSourceInterface<T> {
-    private T data;
+public class OutputSource implements OutputSourceInterface {
+	
+    private String filePath;
 
-    public T getData() {
-        return data;
+
+    public void setData(String data) {
+        this.filePath = filePath;
     }
 
-    public void setData(T data) {
-        this.data = data;
-    }
+	@Override
+	public String getFilePath() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

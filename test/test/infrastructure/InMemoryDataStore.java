@@ -1,17 +1,17 @@
 package test.infrastructure;
 
-import java.util.List;
+import java.nio.file.Path;
 
 public class InMemoryDataStore {
 
     public void process(InMemoryInputSource inputConfig, InMemoryOutputSource outputConfig) {
-        // Read input 
-        List<Integer> inputData = inputConfig.getData();
+        // Read input path
+        Path inputPath = inputConfig.getData();
+        
+        // Example processing based on the input path
+        int result = inputPath.getFileName().toString().length(); 
 
-        // Process and write output
-        for (Integer input : inputData) {
-            String result = "Processed: " + input;  
-            outputConfig.writeOutput(result);
-        }
+        // Write the processed output as an integer
+        outputConfig.writeOutput(result);
     }
 }

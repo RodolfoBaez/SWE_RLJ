@@ -1,7 +1,8 @@
 package network.api;
 
 public interface UserInput {
-	UserInput getInput();
+	
+	String getInput();
 
 	char getdelimiter();
 }

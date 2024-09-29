@@ -2,12 +2,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import conceptual.api.ComputeEngine;
 import conceptual.api.ComputeEngineTwo;
-import process.api.DataStorageTestOnly;
+import data.storage.DataStorage;
 
 public class ComputeEngineIntegrationTest {
 	ComputeEngine ce = new ComputeEngine();
 	ComputeEngineTwo ce2 = new ComputeEngineTwo();
-	DataStorageTestOnly ds = new DataStorageTestOnly();
+	DataStorage ds = new DataStorage();
 
 	@org.junit.Test
 	public void validateInputFromCe() {
@@ -25,8 +25,9 @@ public class ComputeEngineIntegrationTest {
 
 	@org.junit.Test
 	public void validateWrittenByDs() {
-		double[] expected = { 1.0, 3628800.0, 15511210043330985984000000.0 };
-		assertEquals(ds.writeToOutput(), expected, "DS Fail: Written Output != Expected");
+		double[] results = { 1.0, 3628800.0, 15511210043330985984000000.0 };
+		String expectedString = "1.0, 3628800.0, 15511210043330985984000000.0";
+		assertEquals(ds.setContentToWrite(results), expectedString, "DS Fail: Written Output != Expected");
 	}
 
 }

@@ -1,4 +1,6 @@
 package network.impl;
+
+import computation.FactorialCompute;
 import network.api.NetworkBoundAPI;
 
 public class NetworkApiImpl {
@@ -16,7 +18,8 @@ public class NetworkApiImpl {
 	}
 
 	public String getCeOutput(String getOutput) {
-		return "";
+		return ""; // call Factorial compute ;
 	}
-
+	
+		// connect to data store
 }

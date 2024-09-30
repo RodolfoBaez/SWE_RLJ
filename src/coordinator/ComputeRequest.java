@@ -1,33 +1,38 @@
 package coordinator;
 
+import conceptual.api.*;
+
 public class ComputeRequest {
-	
-	private static final char DEFAULT_DELIMITER = ';';
 
-	private final InputConfig inputConfig;
-	private final OutputConfig outputConfig;
-	private final char delimiter;
-	
-	public ComputeRequest(InputConfig inputConfig, OutputConfig outputConfig) {
-		this(inputConfig, outputConfig, DEFAULT_DELIMITER); // default delimiter: ;
-	}
-	
-	public ComputeRequest(InputConfig inputConfig, OutputConfig outputConfig, char delimiter) {
-		this.inputConfig = inputConfig;
-		this.outputConfig = outputConfig;
-		this.delimiter = delimiter;
-	}
-	
-	public char getDelimiter() {
-		return delimiter;
-	}
+    private static final char DEFAULT_DELIMITER = ';';
 
-	public InputConfig getInputConfig() {
-		return inputConfig;
-	}
+    private final InputSource inputSource; // Fixed naming convention
+    private final OutputSource outputSource; // Fixed naming convention
+    private final char delimiter;
 
-	public OutputConfig getOutputConfig() {
-		return outputConfig;
-	}
+    // Constructor with default delimiter
+    public ComputeRequest(InputSource inputSource, OutputSource outputSource) {
+        this(inputSource, outputSource, DEFAULT_DELIMITER); // Default delimiter: ;
+    }
 
+    // Constructor with custom delimiter
+    public ComputeRequest(InputSource inputSource, OutputSource outputSource, char delimiter) {
+        this.inputSource = inputSource; // Fixed variable name
+        this.outputSource = outputSource; // Fixed variable name
+        this.delimiter = delimiter;
+    }
+
+    public char getDelimiter() {
+        return delimiter;
+    }
+
+    public InputSource getInputSource() {
+        return inputSource; // Added getter for input source
+    }
+
+    public OutputSource getOutputSource() {
+        return outputSource; // Added getter for output source
+    }
+
+	
 }

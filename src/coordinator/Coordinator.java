@@ -1,10 +1,13 @@
 package coordinator;
 
-import network.api.*;
-import conceptual.api.*;
-import process.api.*;
-import process.impl.*;
-import data.storage.*;
+import conceptual.api.ComputationalAPI;
+import conceptual.api.ComputeEngine;
+import conceptual.api.ComputeEngineTwo;
+import conceptual.api.InputSource;
+import conceptual.api.OutputSource;
+import data.storage.DataStorage;
+import network.api.ComputeResult;
+import process.impl.ProcessAPIImpl;
 
 public class Coordinator implements ComputationCoordinator {
 

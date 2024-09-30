@@ -1,6 +1,6 @@
 package coordinator;
 
-import network.api.*;i
+import network.api.*;
 import conceptual.api.*;
 import process.api.*;
 import process.impl.*;

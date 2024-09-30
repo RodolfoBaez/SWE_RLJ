@@ -1,43 +1,54 @@
 package coordinator;
 
-import network.api.ComputeE;
-import network.api.NetworkBoundAPI;
-import conceptual.api.ComputeEngine;
-import process.api.ProcessAPI;
-import process.api.DataStorage;
-import network.api.UserInput;
-import coordinator.ComputationResult;
+import network.api.*;i
+import conceptual.api.*;
+import process.api.*;
+import process.impl.*;
+import data.storage.*;
 
-public class Coordinator {
+public class Coordinator implements ComputationCoordinator {
 
-    private final NetworkBoundAPI networkAPI;
-    private final ProcessAPI processAPI;
-    private final DataStorage dataStorage;
+    private final DataStorage dataStore; 
     private final ComputeEngine computeEngine;
+    private final ComputationalAPI computationalAPI; 
+    private final ProcessAPIImpl processAPI; // Reference to ProcessAPIImpl
 
-    // Constructor to initialize the NetworkBoundAPI, ProcessAPI, DataStorage, and ComputeEngine components
-    public Coordinator(NetworkBoundAPI networkAPI, ProcessAPI processAPI, DataStorage dataStorage, ComputeEngine computeEngine) {
-        this.networkAPI = networkAPI;
-        this.processAPI = processAPI;
-        this.dataStorage = dataStorage;
+    // Constructor to initialize the components
+    public Coordinator(DataStorage dataStore, ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
+        this.dataStore = dataStore;
         this.computeEngine = computeEngine;
+        this.computationalAPI = new ComputationalAPI(computeEngine, computeEngineTwo);
+        this.processAPI = new ProcessAPIImpl(computeEngine, dataStore); // Initialize ProcessAPIImpl
     }
 
-    // Method to receive the user request, start computation, and handle data storage interaction
-    public ComputationResult startComputation(UserInput userInput) {
+    @Override
+    public ComputeResult compute(ComputeRequest request) {
         try {
-            // Step 1: Delegate the request to the NetworkBoundAPI to handle user input
-            networkAPI.prototype(userInput, (ComputeE) computeEngine);  // Task a
+            // Step a: Receive requests from the user to start the computation
+            InputSource inputSource = request.getInputSource(); 
+            OutputSource outputSource = request.getOutputSource();
 
-            // Step 2: Delegate the request to ProcessAPI to handle data storage (reading integers)
-            processAPI.prototype((process.api.ComputeEngine) computeEngine, dataStorage);  // Task b
+            // Step b: Use the ProcessAPI to read the input integer
+            int inputInteger = dataStore.readInteger(inputSource);
+            if (inputInteger == Integer.MIN_VALUE) { 
+                return ComputeResult.FAILURE; 
+            }
 
-            // If both processes are successful, return a success message
-            return new ComputationResult(true, "Computation and data handling successful");
+            // Step c: Pass the integer to ComputeEngineTwo through ComputationalAPI
+            computationalAPI.sendInputToComputeEngineTwo(inputInteger);
+
+            // Step d: Use ProcessAPI to handle output
+            String contentToWrite = processAPI.sendResultsToDs(computeEngine); // Get content to write
+            
+            // Write the result to the output
+            dataStore.writeOutput(outputSource, contentToWrite);
+            
+            // Return success result
+            return ComputeResult.SUCCESS; 
 
         } catch (Exception e) {
-            // If an error occurs in either task, return a failure message
-            return new ComputationResult(false, "Computation failed: " + e.getMessage());
+            // If an error occurs, return failure
+            return new ComputeResult(false, "Computation failed: " + e.getMessage());
         }
     }
 }

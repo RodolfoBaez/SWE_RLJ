@@ -23,8 +23,8 @@ public class ComputationalAPI implements ComputationalAPIInterface {
 
     // Implementation for sending output (integer) to ComputeEngine
     @Override
-    public void sendOutputToComputeEngine(int outputData) {
+    public void sendOutputToComputeEngine(int computedResult) {
         // Writing the output result to ComputeEngine
-        computeEngine.writeOutput(outputData);
+        computeEngine.setOutput(computedResult);
     }
 }

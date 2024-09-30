@@ -7,8 +7,8 @@ public class ComputeRequest {
 
     private static final char DEFAULT_DELIMITER = ';';
 
-    private final InputSource inputSource; // Fixed naming convention
-    private final OutputSource outputSource; // Fixed naming convention
+    private final InputSource inputSource; 
+    private final OutputSource outputSource; 
     private final char delimiter;
 
     // Constructor with default delimiter
@@ -18,8 +18,8 @@ public class ComputeRequest {
 
     // Constructor with custom delimiter
     public ComputeRequest(InputSource inputSource, OutputSource outputSource, char delimiter) {
-        this.inputSource = inputSource; // Fixed variable name
-        this.outputSource = outputSource; // Fixed variable name
+        this.inputSource = inputSource; 
+        this.outputSource = outputSource; 
         this.delimiter = delimiter;
     }
 
@@ -28,11 +28,11 @@ public class ComputeRequest {
     }
 
     public InputSource getInputSource() {
-        return inputSource; // Added getter for input source
+        return inputSource; 
     }
 
     public OutputSource getOutputSource() {
-        return outputSource; // Added getter for output source
+        return outputSource; 
     }
 
 	

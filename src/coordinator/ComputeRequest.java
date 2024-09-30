@@ -1,6 +1,7 @@
 package coordinator;
 
-import conceptual.api.*;
+import conceptual.api.InputSource;
+import conceptual.api.OutputSource;
 
 public class ComputeRequest {
 

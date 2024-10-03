@@ -3,6 +3,7 @@ package coordinator;
 import conceptual.api.ComputationalAPI;
 import conceptual.api.ComputeEngine;
 import conceptual.api.ComputeEngineTwo;
+import conceptual.api.ComputeEngineTwoInterface;
 import conceptual.api.InputSource;
 import conceptual.api.OutputSource;
 import data.storage.DataStorage;
@@ -11,16 +12,17 @@ import process.impl.ProcessAPIImpl;
 
 public class Coordinator implements ComputationCoordinator {
 
+	// try to implement processapi inside datastore
+	// think about combining the processapiinterface with datastorageinterfaces
     private final DataStorage dataStore; 
-    private final ComputeEngine computeEngine;
-    private final ComputationalAPI computationalAPI; 
-    private final ProcessAPIImpl processAPI; // Reference to ProcessAPIImpl
+    private final ComputeEngineTwoInterface computeEngine;//change this to only have api here 
+    private final ProcessAPIImpl processAPI; 
 
     // Constructor to initialize the components
     public Coordinator(DataStorage dataStore, ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
         this.dataStore = dataStore;
-        this.computeEngine = computeEngine;
-        this.computationalAPI = new ComputationalAPI(computeEngine, computeEngineTwo);
+        this.computeEngine = (ComputeEngineTwoInterface) computeEngine;
+        new ComputationalAPI(computeEngine, computeEngineTwo);
         this.processAPI = new ProcessAPIImpl(computeEngine, dataStore); // Initialize ProcessAPIImpl
     }
 
@@ -38,13 +40,12 @@ public class Coordinator implements ComputationCoordinator {
             }
 
             // Step c: Pass the integer to ComputeEngineTwo through ComputationalAPI
-            computationalAPI.sendInputToComputeEngineTwo(inputInteger);
-
+            int result = computeEngine.performComputation(inputInteger);
             // Step d: Use ProcessAPI to handle output
-            String contentToWrite = processAPI.sendResultsToDs(computeEngine); // Get content to write
+            String contentToWrite = processAPI.sendResultsToDs(result); 
             
             // Write the result to the output
-            dataStore.writeOutput(outputSource, contentToWrite);
+            dataStore.writeOutput(outputSource, result);
             
             // Return success result
             return ComputeResult.SUCCESS; 

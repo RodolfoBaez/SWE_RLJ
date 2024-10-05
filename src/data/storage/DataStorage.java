@@ -89,5 +89,11 @@ public class DataStorage implements DataStorageInterface {
 		
 	}
 
+	/*@Override
+	public String setContentToWrite(double[] computedOutput) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+
 	
 }

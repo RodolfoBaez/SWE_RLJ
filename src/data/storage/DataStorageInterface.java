@@ -7,7 +7,7 @@ public interface DataStorageInterface {
 
 	public File writeToOutputFile(String filePath, String content);
 
-	public String setContentToWrite(double[] computedOutput);
+	//public String setContentToWrite(double[] computedOutput);
 
 	public ArrayList<File> getOutputFiles();
 

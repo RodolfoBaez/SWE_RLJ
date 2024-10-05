@@ -12,17 +12,15 @@ public class ComputeEngineIntegrationTest {
 
     @org.junit.Test
     public void validateInputFromCe() {
-        double[] testArr = { 1, 10, 25 };
-        // Should be assertArrayEquals since we want to compare 2 arrays
-        assertArrayEquals(testArr, ce.getInputSource("0100100001101001"), "CE Fail: Input Incorrect");
+        double[] expectedInput = { 1.0, 10.0, 25.0 }; // Example expected input
+        assertArrayEquals(expectedInput, ce.getInputSource("0100100001101001"), "CE Fail: Input Incorrect");
     }
 
     @org.junit.Test
     public void validateOutputFromCeTwo() {
-        double[] testArr = { 1, 10, 25 };
+        double[] testArr = { 1.0, 10.0, 25.0 }; // Ensure the input is of type double[]
         double[] expectedResult = { 1.0, 3628800.0, 15511210043330985984000000.0 };
-        
-        // Ensure performComputation returns a double[]
+
         double[] actualResult = ce2.performComputation(testArr);
         assertArrayEquals(expectedResult, actualResult, "CE2 Fail: Computation Failed");
     }
@@ -31,7 +29,7 @@ public class ComputeEngineIntegrationTest {
     public void validateWrittenByDs() {
         double[] results = { 1.0, 3628800.0, 15511210043330985984000000.0 };
         String expectedString = "1.0, 3628800.0, 15511210043330985984000000.0";
-        
+
         // Assuming setContentToWrite returns the String output
         assertEquals(expectedString, ds.setContentToWrite(results), "DS Fail: Written Output != Expected");
     }

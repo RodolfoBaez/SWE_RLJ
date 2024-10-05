@@ -1,6 +1,8 @@
 package conceptual.api;
 
+import java.nio.file.Path;
+
 public interface InputSourceInterface {
-    int getData();
+    Path getData();
     void setData(int data);
 }

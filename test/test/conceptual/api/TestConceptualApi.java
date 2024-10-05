@@ -42,7 +42,7 @@ public class TestConceptualApi {
 
         // Verify interactions
         verify(mockComputeEngineTwo).performComputation(mockData);  // Check that computation was performed
-        verify(mockComputeEngine).writeOutput(mockResult);          // Verify that the result was sent to ComputeEngine
+        verify(mockComputeEngine).getOutput(mockResult);          // Verify that the result was sent to ComputeEngine
     }
 
     

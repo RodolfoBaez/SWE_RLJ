@@ -31,8 +31,8 @@ public class ProcessAPIImpl implements ProcessInterface {
 	}
 
 	@Override
-	public String sendResultsToDs(int result) {
-		return ds.setContentToWrite(result);
+	public String sendResultsToDs(double[] resultArray) {
+		return ds.setContentToWrite(resultArray);
 	}
 
 	@Override

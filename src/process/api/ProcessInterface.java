@@ -13,5 +13,5 @@ public interface ProcessInterface {
 
 	public ArrayList<File> getOutputFiles(DataStorage ds);
 
-	String sendResultsToDs(int result);
+	String sendResultsToDs(double[] resultArray);
 }

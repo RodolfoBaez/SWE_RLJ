@@ -42,10 +42,10 @@ public class Coordinator implements ComputationCoordinator {
             // Step c: Pass the integer to ComputeEngineTwo through ComputationalAPI
             int result = computeEngine.performComputation(inputInteger);
             // Step d: Use ProcessAPI to handle output
-            String contentToWrite = processAPI.sendResultsToDs(result); 
+            double[] resultArray = { (double) result }; // Convert int to double[]
             
             // Write the result to the output
-            dataStore.writeOutput(outputSource, result);
+            dataStore.writeOutput(outputSource, resultArray);
             
             // Return success result
             return ComputeResult.SUCCESS; 

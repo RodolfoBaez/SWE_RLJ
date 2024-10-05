@@ -9,6 +9,7 @@ import java.util.List;
 
 import conceptual.api.ComputeEngine;
 import conceptual.api.InputSource;
+import conceptual.api.OutputSource;
 import process.impl.ProcessAPIImpl;
 
 public class DataStorage implements DataStorageInterface {
@@ -86,6 +87,16 @@ public class DataStorage implements DataStorageInterface {
 
 	public void setDelimitter(char delim) {
 		this.delimitter = delim;
+	}
+
+	public int readInteger(InputSource inputSource) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void writeOutput(OutputSource outputSource, int result) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

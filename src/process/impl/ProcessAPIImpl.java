@@ -31,8 +31,8 @@ public class ProcessAPIImpl implements ProcessInterface {
 	}
 
 	@Override
-	public String sendResultsToDs(ComputeEngine ce) {
-		return ds.setContentToWrite(ce.getResults());
+	public String sendResultsToDs(int result) {
+		return ds.setContentToWrite(result.getResults());
 	}
 
 	@Override

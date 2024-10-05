@@ -12,4 +12,6 @@ public interface ProcessInterface {
 	public File getOutputFile(DataStorage ds, String filePath, int jobNumber) throws Exception;
 
 	public ArrayList<File> getOutputFiles(DataStorage ds);
+
+	String sendResultsToDs(int result);
 }

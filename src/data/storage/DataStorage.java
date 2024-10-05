@@ -33,7 +33,7 @@ public class DataStorage implements DataStorageInterface {
 	}
 
 	@SuppressWarnings("unused")
-	private void prototypeWorkFlow(double[] computedOutput) {
+	private void prototypeWorkFlow(int computedOutput) {
 		// Compute Engine performed factorial on some input,
 		// grab computed results from CE with process API,
 		// convert results into content we can pass to BufferedWriter,

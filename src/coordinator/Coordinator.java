@@ -52,11 +52,11 @@ public class Coordinator implements ComputationCoordinator {
 
         } catch (Exception e) {
             // If an error occurs, return failure
-            return ComputeResult(false, "Computation failed: " + e.getMessage());
+            return computeResult(false, "Computation failed: " + e.getMessage());
         }
     }
 
-	private ComputeResult ComputeResult(boolean b, String string) {
+	private ComputeResult computeResult(boolean b, String string) {
 		// TODO Auto-generated method stub
 		return null;
 	}

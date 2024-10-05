@@ -32,7 +32,7 @@ public class ProcessAPIImpl implements ProcessInterface {
 
 	@Override
 	public String sendResultsToDs(int result) {
-		return ds.setContentToWrite(result.getResults());
+		return ds.setContentToWrite(result);
 	}
 
 	@Override
@@ -70,6 +70,12 @@ public class ProcessAPIImpl implements ProcessInterface {
 		} else {
 			return outputFile;
 		}
+	}
+
+	@Override
+	public String sendResultsToDs(ComputeEngine ce) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

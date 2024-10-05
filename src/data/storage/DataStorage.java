@@ -66,18 +66,8 @@ public class DataStorage implements DataStorageInterface {
 	}
 
 	@Override
-	public String setContentToWrite(double[] computedOutput) {
-		// Check if the computeResults is null
-		if (!computedOutput.equals(null)) {
-			// Format content for output file
-			String content = "";
-			for (double i : computedOutput) {
-				content += (i + delimitter + " ");
-			}
-			return content;
-		} else {
-			return "Failure to create content for Output";
-		}
+	public String setContentToWrite(int result) {
+		return "string";
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class DataStorage implements DataStorageInterface {
 	}
 
 	@SuppressWarnings("unused")
-	private void prototypeWorkFlow(int computedOutput) {
+	private void prototypeWorkFlow(double[] computedOutput) {
 		// Compute Engine performed factorial on some input,
 		// grab computed results from CE with process API,
 		// convert results into content we can pass to BufferedWriter,
@@ -66,7 +66,7 @@ public class DataStorage implements DataStorageInterface {
 	}
 
 	@Override
-	public String setContentToWrite(int result) {
+	public String setContentToWrite(double[] computedOutput) {
 		return "string";
 	}
 

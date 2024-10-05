@@ -12,4 +12,6 @@ public interface DataStorageInterface {
 	public ArrayList<File> getOutputFiles();
 
 	public String setContentToWrite(int result);
+
+	String setContentToWrite(double[] computedOutput);
 }

@@ -1,8 +1,11 @@
+package test.integration;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import conceptual.api.ComputeEngine;
 import conceptual.api.ComputeEngineTwo;
 import data.storage.DataStorage;
+import network.api.UserInput;
 
 public class ComputeEngineIntegrationTest {
 	ComputeEngine ce = new ComputeEngine();
@@ -25,9 +28,12 @@ public class ComputeEngineIntegrationTest {
 
 	@org.junit.Test
 	public void validateWrittenByDs() {
-		double[] results = { 1.0, 3628800.0, 15511210043330985984000000.0 };
-		String expectedString = "1.0, 3628800.0, 15511210043330985984000000.0";
-		assertEquals(ds.setContentToWrite(results), expectedString, "DS Fail: Written Output != Expected");
+		int[] mockResults = { 1, 3628800 };
+		UserInput mockUserInput = new UserInput("../input/myInput", ';', "../output/myOutput");
+		String expectedString = "1; 3628800";
+
+		assertEquals(ds.setContentToWrite(mockResults, mockUserInput), expectedString,
+				"DS Fail: Written Output != Expected");
 	}
 
 }

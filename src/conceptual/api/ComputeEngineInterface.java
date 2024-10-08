@@ -1,6 +1,8 @@
 package conceptual.api;
 
 public interface ComputeEngineInterface {
-    InputSource getInputSource(String jobId);
-    void writeOutput(String jobId, OutputSource outputSource);
+	//sending path to CE2
+	//jobId to allow multiple instances to track computation
+    double[] getInputSource(String jobId);
+    
 }

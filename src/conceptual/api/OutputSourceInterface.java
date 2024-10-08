@@ -1,6 +1,6 @@
 package conceptual.api;
 
-public interface OutputSourceInterface<T> {
-    T getData();
-    void setData(T data);
+public interface OutputSourceInterface {
+    int getData();
+    void setData(int data);
 }

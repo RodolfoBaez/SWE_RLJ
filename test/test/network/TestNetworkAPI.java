@@ -1,37 +1,22 @@
 package test.network;
 
-import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
+
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.when;
 
-import network.impl.NetworkApiImpl;
-import network.api.NetworkBoundAPI;
-
-
+import conceptual.api.ComputeEngine;
+import network.api.NetworkAPI;
+import network.api.UserInput;
 
 public class TestNetworkAPI {
-
-
-	private NetworkApiImpl networkApi = new NetworkApiImpl((Mockito.mock(NetworkBoundAPI.class))); 
-
-
-
-
-	// make mock network api object so i can call real one 
+	private NetworkAPI networkApi = new NetworkAPI(mock(ComputeEngine.class));
 
 	@Test
-	public void testInput() {
-		String result = networkApi.getUserInput("Test Input");
-		Assertions.assertEquals(result, "Input recived");
-	}
-
-	@Test 
-	public void testOutput() {
-		String result = networkApi.getCeOutput("Test Output");
-		Assertions.assertEquals(result, "Output given");
-
+	public void testRecieveInputFromUser() {
+		UserInput expected = new UserInput("myInputPath", ';', "myOutputPath");
+		UserInput userInput = networkApi.recieveInputFromUser("myInputPath", ';', "myOutputPath");
+		Assertions.assertEquals(userInput, expected);
 	}
 
 }

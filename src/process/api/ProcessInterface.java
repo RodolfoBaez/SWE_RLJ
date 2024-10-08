@@ -1,17 +1,13 @@
 package process.api;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import conceptual.api.ComputeEngine;
 import data.storage.DataStorage;
+import network.api.UserInput;
 
 public interface ProcessInterface {
-	public String sendResultsToDs(ComputeEngine ce);
+	public ProcessResultCode sendResultsToDs(ComputeEngine ce, UserInput ui);
 
-	public File getOutputFile(DataStorage ds, String filePath, int jobNumber) throws Exception;
-
-	public ArrayList<File> getOutputFiles(DataStorage ds);
-
-	String sendResultsToDs(double[] resultArray);
+	public File getOutputFile(DataStorage ds, String filePath) throws Exception;
 }

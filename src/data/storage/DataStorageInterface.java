@@ -1,17 +1,14 @@
 package data.storage;
 
 import java.io.File;
-import java.util.ArrayList;
+
+import network.api.UserInput;
 
 public interface DataStorageInterface {
 
 	public File writeToOutputFile(String filePath, String content);
 
-	//public String setContentToWrite(double[] computedOutput);
+	public String setContentToWrite(int[] computedOutput, UserInput ui);
 
-	public ArrayList<File> getOutputFiles();
-
-	public String setContentToWrite(int result);
-
-	String setContentToWrite(double[] computedOutput);
+	public File getOutputFile(String fileName);
 }

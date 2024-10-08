@@ -1,30 +1,32 @@
 package conceptual.api;
 
+import network.api.UserInput;
+
 public class ComputeEngine implements ComputeEngineInterface {
 
-    private int computedResultOutput; // Variable to store the computed result
+	private int computedResultOutput; // Variable to store the computed result
 
+	// method to return computed results to processAPI to send to data storage
+	public int[] getResults() {
+		int[] defaultArr = { 1, 3628800 };
+		return defaultArr;
+	}
 
-    public double[] getResults() {
-        double[] defaultArr = { 1.0, 3628800.0, 15511210043330985984000000.0 };
-        return defaultArr;
-    }
+	// Method to perform a computation and store the result
+	public void setOutput(int computedResult) {
+		// Store the computed result
+		this.computedResultOutput = computedResult;
+	}
 
-    // Method to perform a computation and store the result
-    public void setOutput(int computedResult) {
-        // Store the computed result
-        this.computedResultOutput = computedResult; 
-    }
+	// Method to retrieve the last computed output
+	public int getOutput() {
+		return this.computedResultOutput; // Return the last computed result
+	}
 
-    // Method to retrieve the last computed output
-    public int getOutput() {
-        return this.computedResultOutput; // Return the last computed result
-    }
-    
-    public double[] getInputSource(String input) {
-        // Logic to convert input to double[] (this is just an example)
-        // Modify as needed for your implementation
-        return new double[]{1.0, 10.0, 25.0}; // Example return
-    }
+	// TODO: implement logic to handle multiple jobs
+	@Override
+	public UserInput getInputSource(String jobId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
-

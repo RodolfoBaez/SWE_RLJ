@@ -1,9 +1,9 @@
 package coordinator;
 
-import network.api.ComputeResult;
+import network.api.UserInput;
 
 public interface ComputationCoordinator {
 
-	ComputeResult compute(ComputeRequest request);
+	ComputationResultCode compute(UserInput userInput);
 
 }

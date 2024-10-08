@@ -2,18 +2,25 @@ package network.api;
 
 import conceptual.api.ComputeEngine;
 
+//Handle input from text file for compute engine
 public class NetworkAPI {
-	ComputeEngine ce;
+	private final ComputeEngine computeEngine;
 
 	public NetworkAPI(ComputeEngine ce) {
-		this.ce = ce;
+		computeEngine = ce;
 	}
 
 	// For Coordinator to build example workFlow
-	public void prototype(ComputeEngine computeEngine) {
-		recieveInputFromUser("myInputFilePath", ';', "myOutputFilePath");
+	public UserInput prototype(String inputFilePath, char delimiter, String outputFilePath) {
+		return recieveInputFromUser(inputFilePath, delimiter, outputFilePath);
 	}
 
+	public UserInput prototype(String inputFilePath, String outputFilePath) {
+		return recieveInputFromUser(inputFilePath, outputFilePath);
+	}
+
+	// TODO: since the user is a text file, maybe we should be checking the file
+	// content for delimiter?
 	public UserInput recieveInputFromUser(String inputFilePath, char outputDelimitter, String outputPath) {
 		return new UserInput(inputFilePath, outputDelimitter, outputPath);
 	}

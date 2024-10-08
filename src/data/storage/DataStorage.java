@@ -5,8 +5,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import conceptual.api.ComputeEngine;
+import conceptual.api.InputSource;
+import conceptual.api.OutputSource;
 import process.impl.ProcessAPIImpl;
 
 public class DataStorage implements DataStorageInterface {
@@ -64,17 +67,7 @@ public class DataStorage implements DataStorageInterface {
 
 	@Override
 	public String setContentToWrite(double[] computedOutput) {
-		// Check if the computeResults is null
-		if (!computedOutput.equals(null)) {
-			// Format content for output file
-			String content = "";
-			for (double i : computedOutput) {
-				content += (i + delimitter + " ");
-			}
-			return content;
-		} else {
-			return "Failure to create content for Output";
-		}
+		return "string";
 	}
 
 	@Override
@@ -85,4 +78,28 @@ public class DataStorage implements DataStorageInterface {
 	public void setDelimitter(char delim) {
 		this.delimitter = delim;
 	}
+
+	public int readInteger(InputSource inputSource) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void writeOutput(OutputSource outputSource, double[] resultArray) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String setContentToWrite(int result) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*@Override
+	public String setContentToWrite(double[] computedOutput) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+
+	
 }

@@ -1,6 +1,5 @@
 package network.impl;
 
-import computation.FactorialCompute;
 import network.api.NetworkBoundAPI;
 
 public class NetworkApiImpl {

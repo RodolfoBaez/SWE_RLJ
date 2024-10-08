@@ -1,18 +1,22 @@
-// In-memory implementation for OutputSource with a List of Strings
+// In-memory implementation for OutputSource with an int
 package test.infrastructure;
 
-import java.util.ArrayList;
-import java.util.List;
 import conceptual.api.OutputSource;
 
-public class InMemoryOutputSource extends OutputSource<List<String>> {
+public class InMemoryOutputSource extends OutputSource {
+    private int data;
+
     public InMemoryOutputSource() {
-        setData(new ArrayList<>());
+        this.data = 0; // Initialize to a default value
     }
 
-    public void writeOutput(String data) {
-        List<String> currentData = getData();
-        currentData.add(data);
-        setData(currentData);
+    // Method to retrieve the current output data
+    public int getData() {
+        return data;
+    }
+
+    // Method to write output data
+    public void writeOutput(int data) {
+        this.data = data; 
     }
 }

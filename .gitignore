@@ -50,3 +50,7 @@ build/classes/java/test/infrastructureTest/InMemoryOutputSource.class
 test/emptyfile
 /.gradle/
 /build/
+build.gradle
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/8.6/fileHashes/fileHashes.lock
+.gradle/8.6/executionHistory/executionHistory.lock

@@ -12,43 +12,53 @@ import process.impl.ProcessAPIImpl;
 
 public class Coordinator implements ComputationCoordinator {
 
-	// try to implement processapi inside datastore
-	// think about combining the processapiinterface with datastorageinterfaces
-    private final DataStorage dataStore; 
-    private final ComputeEngineTwoInterface computeEngine;//change this to only have api here 
-    private final ProcessAPIImpl processAPI; 
+    private final DataStorage dataStore;
+    private final ComputeEngineTwoInterface computeEngine;
+    private final ProcessAPIImpl processAPI;
 
-    // Constructor to initialize the components
     public Coordinator(DataStorage dataStore, ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
         this.dataStore = dataStore;
         this.computeEngine = (ComputeEngineTwoInterface) computeEngine;
         new ComputationalAPI(computeEngine, computeEngineTwo);
-        this.processAPI = new ProcessAPIImpl(computeEngine, dataStore); // Initialize ProcessAPIImpl
+        this.processAPI = new ProcessAPIImpl(computeEngine, dataStore);
     }
 
     @Override
     public ComputeResult compute(ComputeRequest request) {
-        try {
-            // Step a: Receive requests from the user to start the computation
-            InputSource inputSource = request.getInputSource(); 
-            OutputSource outputSource = request.getOutputSource();
+        // Validate the ComputeRequest parameter
+        if (request == null) {
+            return computeResult(false, "ComputeRequest cannot be null");
+        }
 
-            // Step b: Use the ProcessAPI to read the input integer
+        InputSource inputSource = request.getInputSource();
+        OutputSource outputSource = request.getOutputSource();
+
+        // Validate InputSource and OutputSource
+        if (inputSource == null) {
+            return computeResult(false, "InputSource cannot be null");
+        }
+        if (outputSource == null) {
+            return computeResult(false, "OutputSource cannot be null");
+        }
+
+        try {
+            // Use the ProcessAPI to read the input integer
             int inputInteger = dataStore.readInteger(inputSource);
-            if (inputInteger == Integer.MIN_VALUE) { 
-                return ComputeResult.FAILURE; 
+            // Validate the input integer
+            if (inputInteger == Integer.MIN_VALUE) {
+                return ComputeResult.FAILURE;
             }
 
-            // Step c: Pass the integer to ComputeEngineTwo through ComputationalAPI
+            // Pass the integer to ComputeEngineTwo through ComputationalAPI
             int result = computeEngine.performComputation(inputInteger);
-            // Step d: Use ProcessAPI to handle output
+            // Handle output
             double[] resultArray = { (double) result }; // Convert int to double[]
-            
+
             // Write the result to the output
             dataStore.writeOutput(outputSource, resultArray);
-            
+
             // Return success result
-            return ComputeResult.SUCCESS; 
+            return ComputeResult.SUCCESS;
 
         } catch (Exception e) {
             // If an error occurs, return failure
@@ -56,8 +66,9 @@ public class Coordinator implements ComputationCoordinator {
         }
     }
 
-	private ComputeResult computeResult(boolean b, String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    private ComputeResult computeResult(boolean success, String message) {
+        // Here you would typically create a ComputeResult instance based on the success/failure
+        // This is a placeholder for your actual implementation
+        return success ? ComputeResult.SUCCESS : ComputeResult.FAILURE; // Adjust as needed
+    }
 }

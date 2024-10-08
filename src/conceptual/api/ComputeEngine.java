@@ -18,7 +18,7 @@ public class ComputeEngine implements ComputeEngineInterface {
 
     // Method to retrieve the last computed output
     public int getOutput() {
-        return computedResultOutput; // Return the last computed result
+        return this.computedResultOutput; // Return the last computed result
     }
     
     public double[] getInputSource(String input) {

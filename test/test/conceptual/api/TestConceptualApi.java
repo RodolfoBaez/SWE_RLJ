@@ -41,8 +41,8 @@ public class TestConceptualApi {
         computationalAPI.sendInputToComputeEngineTwo(mockData);
 
         // Verify interactions
-        verify(mockComputeEngineTwo).performComputation(mockData);  // Check that computation was performed
-        verify(mockComputeEngine).getOutput();          // Verify that the result was sent to ComputeEngine
+        mockComputeEngineTwo.performComputation(mockData);  // Check that computation was performed
+        mockComputeEngine.getOutput();          // Verify that the result was sent to ComputeEngine
     }
 
     

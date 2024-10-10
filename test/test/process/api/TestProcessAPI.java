@@ -17,17 +17,17 @@ import process.api.ProcessAPI;
 import process.api.ProcessResultCode;
 
 public class TestProcessAPI {
-	private DataStorage mockDS;
-	private ComputeEngine mockCE;
+	private DataStorage mockDataStorage;
+	private ComputeEngine mockComputeEngine;
 	private ProcessAPI processAPI;
 
 	@BeforeEach
 	public void setUp() {
-		mockCE = mock(ComputeEngine.class);
+		mockComputeEngine = mock(ComputeEngine.class);
 
-		mockDS = mock(DataStorage.class);
+		mockDataStorage = mock(DataStorage.class);
 
-		processAPI = new ProcessAPI(mockCE, mockDS);
+		processAPI = new ProcessAPI(mockComputeEngine, mockDataStorage);
 	}
 
 	@Test
@@ -37,32 +37,33 @@ public class TestProcessAPI {
 		String mockContent = "1; 2; 3";
 
 		// Get our computed results from CE
-		when(mockCE.getResults()).thenReturn(mockResults);
+		when(mockComputeEngine.getResults()).thenReturn(mockResults);
 		// Convert to string ready to write
-		when(mockDS.setContentToWrite(mockResults, mockInput)).thenReturn(mockContent);
+		when(mockDataStorage.setContentToWrite(mockResults, mockInput)).thenReturn(mockContent);
 
 		// compare
-		Assertions.assertEquals(processAPI.sendResultsToDs(mockCE, mockInput), ProcessResultCode.SUCCESS);
+		Assertions.assertEquals(processAPI.sendComputedResultsToDs(mockComputeEngine, mockInput),
+				ProcessResultCode.SUCCESS);
 	}
 
 	@Test
 	public void getOutputFiles() throws Exception {
 		String mockPath = new String("../output/myMockOutputFile");
-		File expected = new File("myMockOutputFile");
+		File expected = new File(mockPath);
 
-		when(mockDS.getOutputFile(mockPath)).thenReturn(expected);
+		when(mockDataStorage.getOutputFile(mockPath)).thenReturn(expected);
 
-		Assertions.assertEquals(processAPI.getOutputFile(mockDS, "myMockOutputFile"), expected);
+		Assertions.assertEquals(processAPI.getOutputFile(mockDataStorage, mockPath), expected);
 	}
 
 	// ProcessAPI depends on an object of DSS and CE
 	@Test
 	public void verifyDsConnected() {
-		assertEquals(processAPI.getDataStorage(), DataStorage.class, "Failed to verify existence of DSS");
+		assertEquals(processAPI.getDataStorage().getClass(), DataStorage.class, "Failed to verify existence of DSS");
 	}
 
 	@Test
 	public void verifyCeConnceted() {
-		assertEquals(processAPI.getCE(), ComputeEngine.class, "Failed to verify existence of CE");
+		assertEquals(processAPI.getCE().getClass(), ComputeEngine.class, "Failed to verify existence of CE");
 	}
 }

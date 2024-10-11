@@ -1,12 +1,14 @@
 package network.api;
 
 import java.io.File;
+import java.util.Objects;
 
 //the 'user' in this case is an input text file
 public class UserInput {
-	private final File inputFile;
-	private final char delimiter;
-	private final File outputFile;
+	private File inputFile;
+	private char delimiter;
+	private File outputFile;
+
 
 	public UserInput(String inputFilePath, char delim, String outputFilePath) {
 		inputFile = new File(inputFilePath);
@@ -16,7 +18,7 @@ public class UserInput {
 
 	public UserInput(String inputFilePath, String outputFilePath) {
 		inputFile = new File(inputFilePath);
-		delimiter = ',';
+		delimiter = ','; // Default delimiter
 		outputFile = new File(outputFilePath);
 	}
 
@@ -32,7 +34,25 @@ public class UserInput {
 		return outputFile;
 	}
 
-	public String toString() {
-		return new String("inputFile: " + inputFile + " delimitter: " + delimiter + " outputFile: " + outputFile);
+	// Override equals to compare the contents of UserInput
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		UserInput userInput = (UserInput) o;
+		return delimiter == userInput.delimiter &&
+				Objects.equals(inputFile.getPath(), userInput.inputFile.getPath()) &&
+				Objects.equals(outputFile.getPath(), userInput.outputFile.getPath());
+	}
+
+
+	// Override hashCode to maintain consistency with equals
+	@Override
+	public int hashCode() {
+		return Objects.hash(inputFile.getPath(), delimiter, outputFile.getPath());
 	}
 }

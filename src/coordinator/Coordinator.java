@@ -43,13 +43,14 @@ public class Coordinator implements ComputationCoordinator {
 
 			// Step 2: Delegate the request to ProcessAPI to handle data storage (reading
 			// integers)
-			processAPI.prototype(computeEngine, dataStorage, userInput); // Task b
+			int[] integersToCompute = processAPI.prototype(userInput); // Task b
 
 			// If both processes are successful, return a success message
 			return ComputationResultCode.SUCCESS;
 
 		} catch (Exception e) {
 			// If an error occurs in either task, return a failure message
+			e.printStackTrace();
 			return ComputationResultCode.ERROR;
 		}
 	}

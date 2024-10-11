@@ -1,8 +1,9 @@
 package process.api;
 
+//TODO: Not sure how to add wrapper for additional functionality here
 public enum ProcessResultCode {
 
-	SUCCESS(0, "pAPI: Successfully sent input"), ERROR(1, "pAPI: Failed to send input");
+	SUCCESS(0, "processAPI: Successfully sent input"), ERROR(1, "processAPI: Failed to send input");
 
 	private final int code;
 	private final String description;

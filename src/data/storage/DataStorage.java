@@ -9,13 +9,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import conceptual.api.ComputeEngine;
 import network.api.UserInput;
-import process.api.ProcessAPI;
 
 public class DataStorage implements DataStorageInterface {
-	private ProcessAPI processAPI;
-	private ComputeEngine ce;
+	private final char defaultDelimiter;
 
 	public DataStorage(ProcessAPI procApi, ComputeEngine ce, char defaultDelim) {
 		processAPI = procApi;
@@ -29,13 +26,17 @@ public class DataStorage implements DataStorageInterface {
 	public int[] readInputAsInts(UserInput ui) {
 		List<Integer> numbersList = new ArrayList<>();
 
-		try (BufferedReader br = new BufferedReader(new FileReader(ui.getInputFile()))) {
-			String line;
-			while ((line = br.readLine()) != null) {
-				numbersList.add(Integer.parseInt(line));
+		if (!ui.equals(null)) {
+			try (BufferedReader br = new BufferedReader(new FileReader(ui.getInputFile()))) {
+				String line;
+				while ((line = br.readLine()) != null) {
+					numbersList.add(Integer.parseInt(line));
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} else {
+			throw new IllegalArgumentException("user input was null");
 		}
 
 		// Convert List<Integer> to int[]
@@ -44,18 +45,23 @@ public class DataStorage implements DataStorageInterface {
 
 	@Override
 	public File writeToOutputFile(String filePath, String content) {
-		File outputFile = new File(filePath);
+		File outputFile;
 
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile, true))) {
-			bw.write(content);
+		if (!(filePath.equals(null) || content.equals(null))) {
+			outputFile = new File(filePath);
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile, true))) {
+				bw.write(content);
 
-			bw.close();
+				bw.close();
 
-			return new File(filePath);
-		} catch (IOException e) {
-			e.printStackTrace();
+				return new File(filePath);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return new File("errorFile");
+		} else {
+			throw new IllegalArgumentException("filePath or content were null");
 		}
-		return new File("errorFile");
 	}
 
 	@Override
@@ -81,7 +87,15 @@ public class DataStorage implements DataStorageInterface {
 
 	@Override
 	public File getOutputFile(String fileName) {
-		return new File("../output/" + fileName);
+		if (!fileName.equals(null)) {
+			return new File("../output/" + fileName);
+		} else {
+			throw new IllegalArgumentException("file name was null");
+		}
+	}
+
+	public String toString() {
+		return new String("DataStorage default delimiter: " + defaultDelimiter);
 	}
 
 }

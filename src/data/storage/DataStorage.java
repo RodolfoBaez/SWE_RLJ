@@ -9,14 +9,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import conceptual.api.ComputeEngine;
 import network.api.UserInput;
+import process.api.ProcessAPI;
 
 public class DataStorage implements DataStorageInterface {
-	private final char defaultDelimiter;
+	private ProcessAPI processAPI;
+	private ComputeEngine ce;
+	private char defaultDelimiter;
 
 	public DataStorage(ProcessAPI procApi, ComputeEngine ce, char defaultDelim) {
 		this.processAPI = procApi;
 		this.ce = ce;
+		this.defaultDelimiter = defaultDelim;
 	}
 	//empty constructor
 	public DataStorage() {

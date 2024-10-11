@@ -13,10 +13,10 @@ public class Coordinator implements ComputationCoordinator {
 	private final DataStorage dataStorage;
 	private final ComputeEngine computeEngine;
 
-	// Constructor to initialize the NetworkBoundAPI, ProcessAPI, DataStorage, and
+	// Constructor to initialize the NetworkAPI, ProcessAPI, DataStorage, and
 	// ComputeEngine components
 	public Coordinator(NetworkAPI networkAPI, ProcessAPI processAPI, DataStorage dataStorage,
-			ComputeEngine computeEngine) {
+					   ComputeEngine computeEngine) {
 		this.networkAPI = networkAPI;
 		this.processAPI = processAPI;
 		this.dataStorage = dataStorage;
@@ -27,8 +27,18 @@ public class Coordinator implements ComputationCoordinator {
 	// storage interaction
 	@Override
 	public ComputationResultCode compute(UserInput userInput) {
+		// Validate the UserInput parameter
+		if (userInput == null) {
+			return computeResult(false, "UserInput cannot be null");
+		}
+
+		// You can add more specific validations for userInput if needed, e.g.:
+		// if (!userInput.isValid()) {
+		//     return computeResult(false, "Invalid UserInput data");
+		// }
+
 		try {
-			// Step 1: Delegate the request to the NetworkBoundAPI to handle user input
+			// Step 1: Delegate the request to the NetworkAPI to handle user input
 			networkAPI.prototype(computeEngine); // Task a
 
 			// Step 2: Delegate the request to ProcessAPI to handle data storage (reading
@@ -44,8 +54,8 @@ public class Coordinator implements ComputationCoordinator {
 		}
 	}
 
-	private ComputationResultCode computeResult(boolean b, String string) {
-		// TODO Auto-generated method stub
-		return null;
+	private ComputationResultCode computeResult(boolean success, String message) {
+		// Return success or error based on the provided boolean
+		return success ? ComputationResultCode.SUCCESS : ComputationResultCode.ERROR; // Adjust as needed
 	}
 }

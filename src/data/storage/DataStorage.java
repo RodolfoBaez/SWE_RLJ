@@ -17,14 +17,14 @@ public class DataStorage implements DataStorageInterface {
 	private ProcessAPI processAPI;
 	private ComputeEngine ce;
 
-	public DataStorage() {
-		this(new ProcessAPI(), new ComputeEngine(), ',');
-	}
-
 	public DataStorage(ProcessAPI procApi, ComputeEngine ce, char defaultDelim) {
 		processAPI = procApi;
 		this.ce = ce;
 	}
+	//empty constructor
+	public DataStorage() {
+	}
+
 
 	public int[] readInputAsInts(UserInput ui) {
 		List<Integer> numbersList = new ArrayList<>();
@@ -60,18 +60,24 @@ public class DataStorage implements DataStorageInterface {
 
 	@Override
 	public String setContentToWrite(int[] computedOutput, UserInput ui) {
-		// Check if the computeResults is null
-		if (!computedOutput.equals(null)) {
-			// Format content for output file
-			String content = "";
-			for (double i : computedOutput) {
-				content += (i + ui.getDelimitter() + " ");
+		// Check if the computedOutput is null
+		if (computedOutput != null) {
+			// Use StringBuilder for efficient concatenation
+			StringBuilder content = new StringBuilder();
+			for (int i = 0; i < computedOutput.length; i++) {
+				content.append(computedOutput[i]);
+				// Append the delimiter after each element, except the last one
+				if (i < computedOutput.length - 1) {
+					content.append(ui.getDelimiter()); // Get delimiter from UserInput
+				}
 			}
-			return content;
-		} else {// TODO: Throw an exception here instead
+			return content.toString(); // Return the final formatted string
+		} else {
+			// Throw an exception if computedOutput is null
 			throw new IllegalArgumentException("computedOutput should not be null");
 		}
 	}
+
 
 	@Override
 	public File getOutputFile(String fileName) {

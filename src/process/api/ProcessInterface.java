@@ -7,7 +7,7 @@ import data.storage.DataStorage;
 import network.api.UserInput;
 
 public interface ProcessInterface {
-	public ProcessResultCode sendResultsToDs(ComputeEngine ce, UserInput ui);
+	public ProcessResultCode sendComputedResultsToDs(ComputeEngine ce, UserInput ui);
 
 	public File getOutputFile(DataStorage ds, String filePath) throws Exception;
 }

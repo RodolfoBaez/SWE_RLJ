@@ -6,29 +6,31 @@ import conceptual.api.ComputeEngine;
 import data.storage.DataStorage;
 import network.api.UserInput;
 
+//Handle interactions between compute engine and data storage
 public class ProcessAPI implements ProcessInterface {
-	private ComputeEngine ce;
-	private DataStorage ds;
+	private ComputeEngine computeEngine;
+	private DataStorage dataStorage;
 
 	public ProcessAPI() {
-		ce = new ComputeEngine();
-		ds = new DataStorage();
+		computeEngine = new ComputeEngine();
+		dataStorage = new DataStorage();
 	}
 
 	public ProcessAPI(ComputeEngine ce, DataStorage ds) {
-		this.ce = ce;
-		this.ds = ds;
+		this.computeEngine = ce;
+		this.dataStorage = ds;
 	}
 
 	// For Coordinator to build example workFlow
-	public void prototype(ComputeEngine computeEngine, DataStorage dataStorage, UserInput userInput) {
-		ProcessResultCode result = sendResultsToDs(computeEngine, userInput);
-		int[] integersToCompute = ds.readInputAsInts(userInput);
+	public int[] prototype(UserInput userInput) {
+		int[] integersToCompute;
+		return (integersToCompute = dataStorage.readInputAsInts(userInput));
 	}
 
+	// TODO: This method doesn't make sense to me
 	@Override
-	public ProcessResultCode sendResultsToDs(ComputeEngine ce, UserInput ui) {
-		if (!ds.setContentToWrite(ce.getResults(), ui).equals(null)) {
+	public ProcessResultCode sendComputedResultsToDs(ComputeEngine ce, UserInput ui) {
+		if (!dataStorage.setContentToWrite(ce.getResults(), ui).equals(null)) {
 			return ProcessResultCode.SUCCESS;
 		} else {
 			return ProcessResultCode.ERROR;
@@ -36,15 +38,15 @@ public class ProcessAPI implements ProcessInterface {
 	}
 
 	@Override
-	public File getOutputFile(DataStorage ds, String filePath) throws Exception {
+	public File getOutputFile(DataStorage ds, String filePath) {
 		return ds.getOutputFile(filePath);
 	}
 
 	public DataStorage getDataStorage() {
-		return this.ds;
+		return this.dataStorage;
 	}
 
 	public ComputeEngine getCE() {
-		return this.ce;
+		return this.computeEngine;
 	}
 }

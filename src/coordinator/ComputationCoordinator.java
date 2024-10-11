@@ -1,9 +1,7 @@
 package coordinator;
 
-import network.api.UserInput;
-
 public interface ComputationCoordinator {
 
-	ComputationResultCode compute(UserInput userInput);
+	ComputationResultCode compute(String inputFilePath, char delimiter, String outputFilePath);
 
 }

@@ -3,10 +3,12 @@ package network.api;
 import java.io.File;
 import java.util.Objects;
 
+//the 'user' in this case is an input text file
 public class UserInput {
 	private File inputFile;
 	private char delimiter;
 	private File outputFile;
+
 
 	public UserInput(String inputFilePath, char delim, String outputFilePath) {
 		inputFile = new File(inputFilePath);

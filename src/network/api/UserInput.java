@@ -35,13 +35,18 @@ public class UserInput {
 	// Override equals to compare the contents of UserInput
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 		UserInput userInput = (UserInput) o;
 		return delimiter == userInput.delimiter &&
 				Objects.equals(inputFile.getPath(), userInput.inputFile.getPath()) &&
 				Objects.equals(outputFile.getPath(), userInput.outputFile.getPath());
 	}
+
 
 	// Override hashCode to maintain consistency with equals
 	@Override

@@ -18,7 +18,7 @@ public class DataStorage implements DataStorageInterface {
 	private ComputeEngine ce;
 
 	public DataStorage(ProcessAPI procApi, ComputeEngine ce, char defaultDelim) {
-		processAPI = procApi;
+		this.processAPI = procApi;
 		this.ce = ce;
 	}
 	//empty constructor

@@ -39,7 +39,7 @@ public class Coordinator implements ComputationCoordinator {
 
 		try {
 			// Step 1: Delegate the request to the NetworkAPI to handle user input
-			networkAPI.prototype(computeEngine); // Task a
+			networkAPI.prototypeHelper(computeEngine); // Task a
 
 			// Step 2: Delegate the request to ProcessAPI to handle data storage (reading
 			// integers)

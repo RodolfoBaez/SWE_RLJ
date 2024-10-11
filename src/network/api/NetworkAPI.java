@@ -29,6 +29,6 @@ public class NetworkAPI {
 		return new UserInput(inputFilePath, outputPath);
 	}
 	//too many prototype methods need to figure out which to keep
-	public void prototype(ComputeEngine computeEngine) {
+	public void prototypeHelper(ComputeEngine computeEngine) {
 	}
 }

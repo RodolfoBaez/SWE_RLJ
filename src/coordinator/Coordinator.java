@@ -32,7 +32,7 @@ public class Coordinator implements ComputationCoordinator {
 			return computeResult(false, "UserInput cannot be null");
 		}
 
-		// You can add more specific validations for userInput if needed, e.g.:
+		//  specific validations
 		// if (!userInput.isValid()) {
 		//     return computeResult(false, "Invalid UserInput data");
 		// }
@@ -55,8 +55,13 @@ public class Coordinator implements ComputationCoordinator {
 		}
 	}
 
-	private ComputationResultCode computeResult(boolean success, String message) {
+	public ComputationResultCode computeResult(boolean success, String message) {
 		// Return success or error based on the provided boolean
 		return success ? ComputationResultCode.SUCCESS : ComputationResultCode.ERROR; // Adjust as needed
+	}
+
+	@Override
+	public ComputationResultCode compute(String inputFilePath, char delimiter, String outputFilePath) {
+		return null;
 	}
 }

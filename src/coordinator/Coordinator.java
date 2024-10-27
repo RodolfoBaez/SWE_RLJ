@@ -13,10 +13,10 @@ public class Coordinator implements ComputationCoordinator {
 	private final DataStorage dataStorage;
 	private final ComputeEngine computeEngine;
 
-	// Constructor to initialize the NetworkBoundAPI, ProcessAPI, DataStorage, and
+	// Constructor to initialize the NetworkAPI, ProcessAPI, DataStorage, and
 	// ComputeEngine components
 	public Coordinator(NetworkAPI networkAPI, ProcessAPI processAPI, DataStorage dataStorage,
-			ComputeEngine computeEngine) {
+					   ComputeEngine computeEngine) {
 		this.networkAPI = networkAPI;
 		this.processAPI = processAPI;
 		this.dataStorage = dataStorage;
@@ -26,10 +26,20 @@ public class Coordinator implements ComputationCoordinator {
 	// Method to receive the user request, start computation, and handle data
 	// storage interaction
 	@Override
-	public ComputationResultCode compute(String inputFilePath, char delimiter, String outputFilePath) {
+	public ComputationResultCode compute(UserInput userInput) {
+		// Validate the UserInput parameter
+		if (userInput == null) {
+			return computeResult(false, "UserInput cannot be null");
+		}
+
+		//  specific validations
+		// if (!userInput.isValid()) {
+		//     return computeResult(false, "Invalid UserInput data");
+		// }
+
 		try {
-			// Step 1: Delegate the request to the NetworkBoundAPI to handle user input
-			UserInput userInput = networkAPI.prototype(inputFilePath, delimiter, outputFilePath); // Task a
+			// Step 1: Delegate the request to the NetworkAPI to handle user input
+			networkAPI.prototypeHelper(computeEngine); // Task a
 
 			// Step 2: Delegate the request to ProcessAPI to handle data storage (reading
 			// integers)
@@ -45,8 +55,13 @@ public class Coordinator implements ComputationCoordinator {
 		}
 	}
 
-	private ComputationResultCode computeResult(boolean b, String string) {
-		// TODO Auto-generated method stub
+	public ComputationResultCode computeResult(boolean success, String message) {
+		// Return success or error based on the provided boolean
+		return success ? ComputationResultCode.SUCCESS : ComputationResultCode.ERROR; // Adjust as needed
+	}
+
+	@Override
+	public ComputationResultCode compute(String inputFilePath, char delimiter, String outputFilePath) {
 		return null;
 	}
 }

@@ -28,5 +28,7 @@ public class NetworkAPI {
 	public UserInput recieveInputFromUser(String inputFilePath, String outputPath) {
 		return new UserInput(inputFilePath, outputPath);
 	}
-
+	//too many prototype methods need to figure out which to keep
+	public void prototypeHelper(ComputeEngine computeEngine) {
+	}
 }

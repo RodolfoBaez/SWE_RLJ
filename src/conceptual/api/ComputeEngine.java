@@ -8,7 +8,7 @@ public class ComputeEngine implements ComputeEngineInterface {
 
 	// method to return computed results to processAPI to send to data storage
 	public int[] getResults() {
-		int[] defaultArr = { 1, 3628800 };
+		int[] defaultArr = { 1, 10, 25 };
 		return defaultArr;
 	}
 

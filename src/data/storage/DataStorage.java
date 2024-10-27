@@ -9,14 +9,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import conceptual.api.ComputeEngine;
 import network.api.UserInput;
+import process.api.ProcessAPI;
 
 public class DataStorage implements DataStorageInterface {
-	private final char defaultDelimiter;
+	private ProcessAPI processAPI;
+	private ComputeEngine ce;
+	private char defaultDelimiter;
 
-	public DataStorage() {
-		defaultDelimiter = ',';
+	public DataStorage(ProcessAPI procApi, ComputeEngine ce, char defaultDelim) {
+		this.processAPI = procApi;
+		this.ce = ce;
+		this.defaultDelimiter = defaultDelim;
 	}
+	//empty constructor
+	public DataStorage() {
+	}
+
 
 	public int[] readInputAsInts(UserInput ui) {
 		List<Integer> numbersList = new ArrayList<>();
@@ -61,27 +71,24 @@ public class DataStorage implements DataStorageInterface {
 
 	@Override
 	public String setContentToWrite(int[] computedOutput, UserInput ui) {
-		// Check if the computeResults or userInput is null
-		if (!(computedOutput.equals(null) || ui.equals(null))) {
-			// Format content for output file
-			String content = "";
-			// Check if user supplied a delimiter
-			if (!((int) ui.getDelimiter() == 0)) {
-				for (double i : computedOutput) {
-					content += (i + ui.getDelimiter() + " ");
-				}
-			} else {
-				// use default if they did not
-				for (double i : computedOutput) {
-					content += (i + this.defaultDelimiter + " ");
+		// Check if the computedOutput is null
+		if (computedOutput != null) {
+			// Use StringBuilder for efficient concatenation
+			StringBuilder content = new StringBuilder();
+			for (int i = 0; i < computedOutput.length; i++) {
+				content.append(computedOutput[i]);
+				// Append the delimiter after each element, except the last one
+				if (i < computedOutput.length - 1) {
+					content.append(ui.getDelimiter()); // Get delimiter from UserInput
 				}
 			}
-
-			return content;
+			return content.toString(); // Return the final formatted string
 		} else {
-			throw new IllegalArgumentException("computedOutput or ui were null");
+			// Throw an exception if computedOutput is null
+			throw new IllegalArgumentException("computedOutput should not be null");
 		}
 	}
+
 
 	@Override
 	public File getOutputFile(String fileName) {

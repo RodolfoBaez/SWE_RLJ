@@ -3,6 +3,7 @@ package test.network;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,13 +22,15 @@ public class TestNetworkAPI {
 		networkApi = new NetworkAPI(mockComputeEngine);
 	}
 
+
 	@Test
-	public void testRecieveInputFromUser() {
+	public void testReceiveInputFromUser() { // Correct spelling
 		UserInput expected = new UserInput("myInputPath", ';', "myOutputPath");
 		UserInput recievedInput = networkApi.recieveInputFromUser("myInputPath", ';', "myOutputPath");
 		Assertions.assertAll(() -> assertEquals(recievedInput.getInputFile(), expected.getInputFile()),
 				() -> assertEquals(recievedInput.getDelimiter(), expected.getDelimiter()),
 				() -> assertEquals(recievedInput.getOutputFile(), expected.getOutputFile()));
 	}
+
 
 }

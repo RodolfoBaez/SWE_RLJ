@@ -32,7 +32,7 @@ public class TestProcessAPI {
 
 	@Test
 	public void testSendResults() {
-		int[] mockResults = { 1, 2, 3 };
+		long[] mockResults = { 1, 2, 3 };
 		UserInput mockInput = new UserInput("myInput", ';', "myOutput");
 		String mockContent = "1; 2; 3";
 

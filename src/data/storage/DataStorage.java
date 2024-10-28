@@ -35,6 +35,7 @@ public class DataStorage implements DataStorageInterface {
 			try (BufferedReader br = new BufferedReader(new FileReader(ui.getInputFile()))) {
 				String line;
 				while ((line = br.readLine()) != null) {
+					// TODO: logic to seperate int from string using delim
 					numbersList.add(Integer.parseInt(line));
 				}
 			} catch (IOException e) {

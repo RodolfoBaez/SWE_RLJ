@@ -23,10 +23,10 @@ public class DataStorage implements DataStorageInterface {
 		this.ce = ce;
 		this.defaultDelimiter = defaultDelim;
 	}
-	//empty constructor
+
+	// empty constructor
 	public DataStorage() {
 	}
-
 
 	public int[] readInputAsInts(UserInput ui) {
 		List<Integer> numbersList = new ArrayList<>();
@@ -70,7 +70,7 @@ public class DataStorage implements DataStorageInterface {
 	}
 
 	@Override
-	public String setContentToWrite(int[] computedOutput, UserInput ui) {
+	public String setContentToWrite(long[] computedOutput, UserInput ui) {
 		// Check if the computedOutput is null
 		if (computedOutput != null) {
 			// Use StringBuilder for efficient concatenation
@@ -88,7 +88,6 @@ public class DataStorage implements DataStorageInterface {
 			throw new IllegalArgumentException("computedOutput should not be null");
 		}
 	}
-
 
 	@Override
 	public File getOutputFile(String fileName) {

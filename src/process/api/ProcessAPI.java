@@ -21,8 +21,7 @@ public class ProcessAPI implements ProcessInterface {
 		this.dataStorage = ds;
 	}
 
-	// For Coordinator to build example workFlow
-	public int[] prototype(UserInput userInput) {
+	public int[] getIntegersToCompute(UserInput userInput) {
 		int[] integersToCompute;
 		return (integersToCompute = dataStorage.readInputAsInts(userInput));
 	}
@@ -30,11 +29,18 @@ public class ProcessAPI implements ProcessInterface {
 	// TODO: This method doesn't make sense to me
 	@Override
 	public ProcessResultCode sendComputedResultsToDs(ComputeEngine ce, UserInput ui) {
-		if (!dataStorage.setContentToWrite(ce.getResults(), ui).equals(null)) {
-			return ProcessResultCode.SUCCESS;
-		} else {
-			return ProcessResultCode.ERROR;
-		}
+//		if (!dataStorage.setContentToWrite(ce.getResults(), ui).equals(null)) {
+//			return ProcessResultCode.SUCCESS;
+//		} else {
+//			return ProcessResultCode.ERROR;
+//		}
+		return ProcessResultCode.ERROR;
+	}
+
+	public void writeToOutputFile(long[] computedFactorials, UserInput ui) {
+		String content = dataStorage.setContentToWrite(computedFactorials, ui);
+		String filePath = ui.getOutputFile().getPath();
+		dataStorage.writeToOutputFile(filePath, content);
 	}
 
 	@Override

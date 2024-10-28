@@ -1,14 +1,15 @@
 package data.storage;
 
 import java.io.File;
+import java.math.BigInteger;
 
 import network.api.UserInput;
 
 public interface DataStorageInterface {
 
-	public File writeToOutputFile(String filePath, String content);
+	public void writeToOutputFile(UserInput ui, String content);
 
-	public String setContentToWrite(long[] computedOutput, UserInput ui);
+	public String setContentToWrite(BigInteger[] computedOutput, UserInput ui);
 
 	public File getOutputFile(String fileName);
 }

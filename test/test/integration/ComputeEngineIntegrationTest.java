@@ -2,6 +2,8 @@ package test.integration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.math.BigInteger;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +19,7 @@ public class ComputeEngineIntegrationTest {
 
 	@Test
 	public void validateInputFromCe() {
-		long[] expectedInput = { 1, 10, 25 }; // Example expected input
+		BigInteger[] expectedInput = { BigInteger.ONE, BigInteger.valueOf(10), BigInteger.valueOf(25) };
 		// change to check the actual contents of array
 		Assertions.assertArrayEquals(expectedInput, ce.getResults(), "CE Fail: Input Incorrect");
 	}
@@ -30,7 +32,7 @@ public class ComputeEngineIntegrationTest {
 
 	@Test
 	public void validateWrittenByDs() {
-		long[] mockResults = { 1, 3628800 };
+		BigInteger[] mockResults = { BigInteger.ONE, BigInteger.valueOf(3628800) };
 		UserInput mockUserInput = new UserInput("../input/myInput", ';', "../output/myOutput");
 		String expectedString = "1;3628800"; // No space after the last element
 

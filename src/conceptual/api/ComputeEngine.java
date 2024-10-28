@@ -1,5 +1,7 @@
 package conceptual.api;
 
+import java.math.BigInteger;
+
 import network.api.UserInput;
 
 public class ComputeEngine implements ComputeEngineInterface {
@@ -7,8 +9,8 @@ public class ComputeEngine implements ComputeEngineInterface {
 	private int computedResultOutput; // Variable to store the computed result
 
 	// method to return computed results to processAPI to send to data storage
-	public long[] getResults() {
-		long[] defaultArr = { 1, 10, 25 };
+	public BigInteger[] getResults() {
+		BigInteger[] defaultArr = { BigInteger.ONE, BigInteger.valueOf(10), BigInteger.valueOf(25) };
 		return defaultArr;
 	}
 

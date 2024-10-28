@@ -1,5 +1,7 @@
 package conceptual.api;
 
+import java.math.BigInteger;
+
 public class ComputationalAPI implements ComputationalAPIInterface {
 
 	private ComputeEngine computeEngine;
@@ -13,7 +15,7 @@ public class ComputationalAPI implements ComputationalAPIInterface {
 
 	// Implementation of sending input (integer) to ComputeEngineTwo
 	@Override
-	public long[] sendInputToComputeEngineTwo(int[] input) {
+	public BigInteger[] sendInputToComputeEngineTwo(int[] input) {
 		return computeEngineTwo.performComputation(input);
 	}
 

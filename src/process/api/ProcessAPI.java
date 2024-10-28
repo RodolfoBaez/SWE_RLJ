@@ -1,6 +1,7 @@
 package process.api;
 
 import java.io.File;
+import java.math.BigInteger;
 
 import conceptual.api.ComputeEngine;
 import data.storage.DataStorage;
@@ -37,10 +38,9 @@ public class ProcessAPI implements ProcessInterface {
 		return ProcessResultCode.ERROR;
 	}
 
-	public void writeToOutputFile(long[] computedFactorials, UserInput ui) {
+	public void writeToOutputFile(BigInteger[] computedFactorials, UserInput ui) {
 		String content = dataStorage.setContentToWrite(computedFactorials, ui);
-		String filePath = ui.getOutputFile().getPath();
-		dataStorage.writeToOutputFile(filePath, content);
+		dataStorage.writeToOutputFile(ui, content);
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package test.conceptual.api;
 
 import static org.mockito.Mockito.when;
 
+import java.math.BigInteger;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -30,7 +32,8 @@ public class TestConceptualApi {
 	public void testSendInputToComputeEngineTwo() {
 		// Use an integer since performComputation expects int, not Path
 		int[] mockData = { 1, 2, 3 }; // Example input data
-		long[] mockResult = { 1, 2, 6 }; // The expected integer result
+		BigInteger[] mockResult = { BigInteger.ONE, BigInteger.TWO, BigInteger.valueOf(6) }; // The expected integer
+																								// result
 
 		// Mock the behavior of the ComputeEngineTwo
 		when(mockComputeEngineTwo.performComputation(mockData)).thenReturn(mockResult);

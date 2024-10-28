@@ -1,5 +1,7 @@
 package coordinator;
 
+import java.math.BigInteger;
+
 import conceptual.api.ComputationalAPI;
 import network.api.NetworkAPI;
 import network.api.UserInput;
@@ -21,7 +23,14 @@ public class Coordinator implements ComputationCoordinator {
 	public void compute(String inputFilePath, char delimiter, String outputFilePath) {
 		UserInput userInput = networkAPI.recieveInputFromUser(inputFilePath, delimiter, outputFilePath);
 		int[] integersToCompute = processAPI.getIntegersToCompute(userInput);
-		long[] computedFactorials = computationalAPI.sendInputToComputeEngineTwo(integersToCompute);
+		// TODO: joe's debug printlns, add more thorough testing for process
+//		for (int i : integersToCompute) {
+//			System.out.println(i);
+//		}
+		BigInteger[] computedFactorials = computationalAPI.sendInputToComputeEngineTwo(integersToCompute);
+//		for (BigInteger i : computedFactorials) {
+//			System.out.println(i);
+//		}
 		processAPI.writeToOutputFile(computedFactorials, userInput);
 	}
 

@@ -34,9 +34,16 @@ public class DataStorage implements DataStorageInterface {
 		if (!ui.equals(null)) {
 			try (BufferedReader br = new BufferedReader(new FileReader(ui.getInputFile()))) {
 				String line;
+				// while the input file has lines
 				while ((line = br.readLine()) != null) {
-					// TODO: logic to seperate int from string using delim
-					numbersList.add(Integer.parseInt(line));
+					// convert line to char array and iterate
+					for (char c : line.toCharArray()) {
+						// exclude delim and add numbers to list
+						if (c != ui.getDelimiter()) {
+							// char '9' - int 0 is int 9
+							numbersList.add(c - 0);
+						}
+					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

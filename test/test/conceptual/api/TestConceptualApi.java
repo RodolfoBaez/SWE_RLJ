@@ -1,8 +1,8 @@
 package test.conceptual.api;
 
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.math.BigInteger;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,37 +14,36 @@ import conceptual.api.ComputeEngineTwo;
 
 public class TestConceptualApi {
 
-    private ComputeEngine mockComputeEngine;
-    private ComputeEngineTwo mockComputeEngineTwo;
-    private ComputationalAPI computationalAPI;
+	private ComputeEngine mockComputeEngine;
+	private ComputeEngineTwo mockComputeEngineTwo;
+	private ComputationalAPI computationalAPI;
 
-    @BeforeEach
-    public void setUp() {
-        // Mock the dependencies
-        mockComputeEngine = Mockito.mock(ComputeEngine.class);
-        mockComputeEngineTwo = Mockito.mock(ComputeEngineTwo.class);
+	@BeforeEach
+	public void setUp() {
+		// Mock the dependencies
+		mockComputeEngine = Mockito.mock(ComputeEngine.class);
+		mockComputeEngineTwo = Mockito.mock(ComputeEngineTwo.class);
 
-        // Initialize the ComputationalAPI with mocked dependencies
-        computationalAPI = new ComputationalAPI(mockComputeEngine, mockComputeEngineTwo);
-    }
+		// Initialize the ComputationalAPI with mocked dependencies
+		computationalAPI = new ComputationalAPI(mockComputeEngine, mockComputeEngineTwo);
+	}
 
-    @Test
-    public void testSendInputToComputeEngineTwo() {
-        // Use an integer since performComputation expects int, not Path
-        int mockData = 123;  // Example input data
-        int mockResult = 42; // The expected integer result
+	@Test
+	public void testSendInputToComputeEngineTwo() {
+		// Use an integer since performComputation expects int, not Path
+		int[] mockData = { 1, 2, 3 }; // Example input data
+		BigInteger[] mockResult = { BigInteger.ONE, BigInteger.TWO, BigInteger.valueOf(6) }; // The expected integer
+																								// result
 
-        // Mock the behavior of the ComputeEngineTwo
-        when(mockComputeEngineTwo.performComputation(mockData)).thenReturn(mockResult);
+		// Mock the behavior of the ComputeEngineTwo
+		when(mockComputeEngineTwo.performComputation(mockData)).thenReturn(mockResult);
 
-        // Call the sendInputToComputeEngineTwo method
-        computationalAPI.sendInputToComputeEngineTwo(mockData);
+		// Call the sendInputToComputeEngineTwo method
+		computationalAPI.sendInputToComputeEngineTwo(mockData);
 
-        // Verify interactions
-        mockComputeEngineTwo.performComputation(mockData);  // Check that computation was performed
-        mockComputeEngine.getOutput();          // Verify that the result was sent to ComputeEngine
-    }
+		// Verify interactions
+		mockComputeEngineTwo.performComputation(mockData); // Check that computation was performed
+		mockComputeEngine.getOutput(); // Verify that the result was sent to ComputeEngine
+	}
 
-    
 }
-

@@ -1,14 +1,16 @@
 package test.integration;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.math.BigInteger;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import conceptual.api.ComputeEngine;
 import conceptual.api.ComputeEngineTwo;
 import data.storage.DataStorage;
 import network.api.UserInput;
-import org.junit.jupiter.api.Test;
 
 public class ComputeEngineIntegrationTest {
 	ComputeEngine ce = new ComputeEngine();
@@ -17,9 +19,9 @@ public class ComputeEngineIntegrationTest {
 
 	@Test
 	public void validateInputFromCe() {
-		int[] expectedInput = { 1, 10, 25 }; // Example expected input
-		//change to check the actual contents of array
-		assertArrayEquals("CE Fail: Input Incorrect", expectedInput, ce.getResults());
+		BigInteger[] expectedInput = { BigInteger.ONE, BigInteger.valueOf(10), BigInteger.valueOf(25) };
+		// change to check the actual contents of array
+		Assertions.assertArrayEquals(expectedInput, ce.getResults(), "CE Fail: Input Incorrect");
 	}
 
 	@Test
@@ -30,9 +32,9 @@ public class ComputeEngineIntegrationTest {
 
 	@Test
 	public void validateWrittenByDs() {
-		int[] mockResults = { 1, 3628800 };
+		BigInteger[] mockResults = { BigInteger.ONE, BigInteger.valueOf(3628800) };
 		UserInput mockUserInput = new UserInput("../input/myInput", ';', "../output/myOutput");
-		String expectedString = "1;3628800";  // No space after the last element
+		String expectedString = "1;3628800"; // No space after the last element
 
 		assertTrue(ds.setContentToWrite(mockResults, mockUserInput).equals(expectedString),
 				"DS Fail: Written Output != Expected");

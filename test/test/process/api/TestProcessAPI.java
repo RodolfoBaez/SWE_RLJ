@@ -5,6 +5,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.math.BigInteger;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,7 @@ public class TestProcessAPI {
 
 	@Test
 	public void testSendResults() {
-		int[] mockResults = { 1, 2, 3 };
+		BigInteger[] mockResults = { BigInteger.ONE, BigInteger.TWO, BigInteger.valueOf(3) };
 		UserInput mockInput = new UserInput("myInput", ';', "myOutput");
 		String mockContent = "1; 2; 3";
 

@@ -1,31 +1,29 @@
 package conceptual.api;
 
+import java.math.BigInteger;
+
 public class ComputationalAPI implements ComputationalAPIInterface {
 
-    private ComputeEngine computeEngine;
-    private ComputeEngineTwo computeEngineTwo;
+	private ComputeEngine computeEngine;
+	private ComputeEngineTwo computeEngineTwo;
 
-    // Constructor for initializing the API with the compute engines
-    public ComputationalAPI(ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
-        this.computeEngine = computeEngine;
-        this.computeEngineTwo = computeEngineTwo;
-    }
+	// Constructor for initializing the API with the compute engines
+	public ComputationalAPI(ComputeEngine computeEngine, ComputeEngineTwo computeEngineTwo) {
+		this.computeEngine = computeEngine;
+		this.computeEngineTwo = computeEngineTwo;
+	}
 
-    // Implementation of sending input (integer) to ComputeEngineTwo
-    @Override
-    public void sendInputToComputeEngineTwo(int inputData) {
-        // Perform computation using ComputeEngineTwo with the provided integer
-        int computedResult = computeEngineTwo.performComputation(inputData);
+	// Implementation of sending input (integer) to ComputeEngineTwo
+	@Override
+	public BigInteger[] sendInputToComputeEngineTwo(int[] input) {
+		return computeEngineTwo.performComputation(input);
+	}
 
-        // After computation, pass the result (integer) to writeOutput in ComputeEngine
-        sendOutputToComputeEngine(computedResult);
-    }
+	// Implementation for sending output (integer) to ComputeEngine
+	@Override
+	public void sendOutputToComputeEngine(int computedResult) {
+		// Writing the output result to ComputeEngine
+		computeEngine.setOutput(computedResult);
+	}
 
-    // Implementation for sending output (integer) to ComputeEngine
-    @Override
-    public void sendOutputToComputeEngine(int computedResult) {
-        // Writing the output result to ComputeEngine
-        computeEngine.setOutput(computedResult);
-    }
-   
 }

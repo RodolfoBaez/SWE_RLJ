@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,10 @@ public class DataStorage implements DataStorageInterface {
 		this.ce = ce;
 		this.defaultDelimiter = defaultDelim;
 	}
-	//empty constructor
+
+	// empty constructor
 	public DataStorage() {
 	}
-
 
 	public int[] readInputAsInts(UserInput ui) {
 		List<Integer> numbersList = new ArrayList<>();
@@ -34,8 +35,16 @@ public class DataStorage implements DataStorageInterface {
 		if (!ui.equals(null)) {
 			try (BufferedReader br = new BufferedReader(new FileReader(ui.getInputFile()))) {
 				String line;
+				// while the input file has lines
 				while ((line = br.readLine()) != null) {
-					numbersList.add(Integer.parseInt(line));
+					// convert line to char array and iterate
+					for (char c : line.toCharArray()) {
+						// exclude delim and add numbers to list
+						if (c != ui.getDelimiter()) {
+							// char '9' - int 0 is int 9
+							numbersList.add(c - 0);
+						}
+					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -49,28 +58,23 @@ public class DataStorage implements DataStorageInterface {
 	}
 
 	@Override
-	public File writeToOutputFile(String filePath, String content) {
-		File outputFile;
+	public void writeToOutputFile(UserInput ui, String content) {
 
-		if (!(filePath.equals(null) || content.equals(null))) {
-			outputFile = new File(filePath);
-			try (BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile, true))) {
+		if (!(ui.equals(null) || content.equals(null))) {
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter(ui.getOutputFile(), true))) {
 				bw.write(content);
 
 				bw.close();
-
-				return new File(filePath);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			return new File("errorFile");
 		} else {
 			throw new IllegalArgumentException("filePath or content were null");
 		}
 	}
 
 	@Override
-	public String setContentToWrite(int[] computedOutput, UserInput ui) {
+	public String setContentToWrite(BigInteger[] computedOutput, UserInput ui) {
 		// Check if the computedOutput is null
 		if (computedOutput != null) {
 			// Use StringBuilder for efficient concatenation
@@ -89,11 +93,10 @@ public class DataStorage implements DataStorageInterface {
 		}
 	}
 
-
 	@Override
 	public File getOutputFile(String fileName) {
 		if (!fileName.equals(null)) {
-			return new File("../output/" + fileName);
+			return new File("../../Output/" + fileName);
 		} else {
 			throw new IllegalArgumentException("file name was null");
 		}

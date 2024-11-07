@@ -1,3 +1,5 @@
+
+
 package coordinator;
 
 import conceptual.api.ComputeEngine;
@@ -6,58 +8,67 @@ import network.api.NetworkAPI;
 import network.api.UserInput;
 import process.api.ProcessAPI;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 public class Coordinator implements ComputationCoordinator {
 
 	private final NetworkAPI networkAPI;
 	private final ProcessAPI processAPI;
-	private final DataStorage dataStorage;
 	private final ComputeEngine computeEngine;
+	private static final int MAX_THREADS = 4; // Upper bound for the number of threads
 
-	// Constructor to initialize the NetworkAPI, ProcessAPI, DataStorage, and
-	// ComputeEngine components
+	// Thread pool with a fixed number of threads
+	private final ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS);
+
 	public Coordinator(NetworkAPI networkAPI, ProcessAPI processAPI, DataStorage dataStorage,
 					   ComputeEngine computeEngine) {
 		this.networkAPI = networkAPI;
 		this.processAPI = processAPI;
-		this.dataStorage = dataStorage;
 		this.computeEngine = computeEngine;
 	}
 
-	// Method to receive the user request, start computation, and handle data
-	// storage interaction
 	@Override
 	public ComputationResultCode compute(UserInput userInput) {
-		// Validate the UserInput parameter
 		if (userInput == null) {
 			return computeResult(false, "UserInput cannot be null");
 		}
 
-		//  specific validations
-		// if (!userInput.isValid()) {
-		//     return computeResult(false, "Invalid UserInput data");
-		// }
-
 		try {
-			// Step 1: Delegate the request to the NetworkAPI to handle user input
-			networkAPI.prototypeHelper(computeEngine); // Task a
+			// Delegate the request to NetworkAPI and ProcessAPI
+			networkAPI.prototypeHelper(computeEngine);
+			int[] integersToCompute = processAPI.prototype(userInput);
 
-			// Step 2: Delegate the request to ProcessAPI to handle data storage (reading
-			// integers)
-			int[] integersToCompute = processAPI.prototype(userInput); // Task b
+			// Create and submit tasks to the thread pool for concurrent computation
+			List<Future<Void>> results = new ArrayList<>();
+			for (int i = 0; i < integersToCompute.length; i++) {
+				final int value = integersToCompute[i];
+				results.add(threadPool.submit(() -> {
+					computeEngine.compute(value); // Or the relevant compute method
+					return null;
+				}));
+			}
 
-			// If both processes are successful, return a success message
+			// Wait for all tasks to complete
+			for (Future<Void> result : results) {
+				result.get(); // Blocking call to ensure each computation completes
+			}
+
 			return ComputationResultCode.SUCCESS;
 
-		} catch (Exception e) {
-			// If an error occurs in either task, return a failure message
+		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 			return ComputationResultCode.ERROR;
 		}
 	}
 
 	public ComputationResultCode computeResult(boolean success, String message) {
-		// Return success or error based on the provided boolean
-		return success ? ComputationResultCode.SUCCESS : ComputationResultCode.ERROR; // Adjust as needed
+		return success ? ComputationResultCode.SUCCESS : ComputationResultCode.ERROR;
 	}
 
 	@Override
@@ -65,3 +76,4 @@ public class Coordinator implements ComputationCoordinator {
 		return null;
 	}
 }
+

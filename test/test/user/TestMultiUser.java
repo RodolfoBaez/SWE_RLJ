@@ -33,7 +33,7 @@ public class TestMultiUser {
 		// that the user will make requests to
 		// Store it in the 'coordinator' instance variable
 		ComputeEngine ce = new ComputeEngine();
-		coordinator = new Coordinator(new NetworkAPI(ce), new ProcessAPI(),
+		coordinator = new Coordinator(new NetworkAPI(ce), new ProcessAPI(), ce,
 				new ComputationalAPI(ce, new ComputeEngineTwo()));
 	}
 

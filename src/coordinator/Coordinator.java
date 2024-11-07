@@ -11,7 +11,6 @@ import java.util.concurrent.Future;
 
 import conceptual.api.ComputationalAPI;
 import conceptual.api.ComputeEngine;
-import data.storage.DataStorage;
 import network.api.NetworkAPI;
 import network.api.UserInput;
 import process.api.ProcessAPI;
@@ -28,8 +27,8 @@ public class Coordinator implements ComputationCoordinator {
 	// Thread pool with a fixed number of threads
 	private final ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS);
 
-	public Coordinator(NetworkAPI networkAPI, ProcessAPI processAPI, DataStorage dataStorage,
-			ComputeEngine computeEngine, ComputationalAPI computationalAPI) {
+	public Coordinator(NetworkAPI networkAPI, ProcessAPI processAPI, ComputeEngine computeEngine,
+			ComputationalAPI computationalAPI) {
 		this.networkAPI = networkAPI;
 		this.processAPI = processAPI;
 		this.computeEngine = computeEngine;

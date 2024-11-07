@@ -7,3 +7,4 @@ public interface ComputationCoordinator {
 	void compute(String inputFilePath, char delimiter, String outputFilePath);
 
 }
+

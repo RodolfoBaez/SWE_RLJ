@@ -31,4 +31,8 @@ public class ComputeEngine implements ComputeEngineInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void compute(int value) {
+		
+	}
 }

@@ -1,29 +1,63 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+plugins {
+	id 'java'
+	id 'eclipse'
+	id 'com.google.protobuf' version '0.9.4' // Apply the Protobuf Gradle Plugin
+	id 'application'
+}
 
 sourceSets {
 	main {
-	  java {
-		srcDirs = ['src']
-	  }
+		java {
+			srcDirs = ['src']
+		}
 	}
 	test {
-	  java {
-	     srcDirs = ['test']
-	  }
-	 }
+		java {
+			srcDirs = ['test']
+		}
+	}
 }
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    testImplementation('junit:junit:4.13.1')
-    testImplementation('org.junit.jupiter:junit-jupiter:5.10.2')
-	testImplementation('org.mockito:mockito-core:5.10.0')
+	// Testing dependencies
+	testImplementation 'junit:junit:4.13.1'
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+	testImplementation 'org.mockito:mockito-core:5.10.0'
+
+	// gRPC and Protocol Buffers dependencies
+	implementation 'io.grpc:grpc-netty:1.57.0'
+	implementation 'io.grpc:grpc-protobuf:1.57.0'
+	implementation 'io.grpc:grpc-stub:1.57.0'
+	implementation 'com.google.protobuf:protobuf-java:3.24.1'
 }
 
 test {
-    useJUnitPlatform()
+	useJUnitPlatform()
+}
+
+protobuf {
+	protoc {
+		artifact = "com.google.protobuf:protoc:3.24.1"
+	}
+	plugins {
+		grpc {
+			artifact = "io.grpc:protoc-gen-grpc-java:1.57.0"
+		}
+	}
+	generateProtoTasks {
+		all().each { task ->
+			task.plugins {
+				grpc {}
+			}
+		}
+	}
+}
+
+// Optional: Define the main class for the application
+application {
+	mainClass = 'com.example.ComputeClient'
 }

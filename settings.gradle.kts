@@ -6,3 +6,5 @@
  */
 
 rootProject.name = "gradle-8.6"
+include("src:proto")
+findProject(":src:proto")?.name = "proto"

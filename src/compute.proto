@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+package compute;
+
+// Message sent by the client to request a computation
+message ComputeRequest {
+  repeated int32 numbers = 1;      // List of numbers to compute
+  optional string delimiter = 2;   // Delimiter for output file (optional)
+  optional string outputFile = 3;  // Output file path
+}
+
+// Message sent by the server as a response
+message ComputeResponse {
+  optional bool success = 1;               // Whether the computation was successful
+  optional string message = 2;             // Additional information or errors
+  optional int32 result = 3;               // Computation result (optional)
+}
+
+// Service definition for computation
+service ComputeService {
+  // Sends computation requests
+  rpc Compute(ComputeRequest) returns (ComputeResponse);
+}

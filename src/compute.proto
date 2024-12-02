@@ -11,9 +11,9 @@ message ComputeRequest {
 
 // Message sent by the server as a response
 message ComputeResponse {
-  optional bool success = 1;               // Whether the computation was successful
-  optional string message = 2;             // Additional information or errors
-  optional int32 result = 3;               // Computation result (optional)
+  optional bool success = 1;                // Whether the computation was successful
+  optional string message = 2;              // Additional information or errors
+  repeated int64 result = 3;                // Array of computation results (big integers)
 }
 
 // Service definition for computation

@@ -13,6 +13,10 @@ public class ComputationalAPI implements ComputationalAPIInterface {
 		this.computeEngineTwo = computeEngineTwo;
 	}
 
+	public ComputationalAPI() {
+
+	}
+
 	// Implementation of sending input (integer) to ComputeEngineTwo
 	@Override
 	public BigInteger[] sendInputToComputeEngineTwo(int[] input) {
